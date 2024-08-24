@@ -6,10 +6,8 @@ describe('index page', async () => {
 
   it('displays the component', async () => {
     const page = await createPage('/')
-    console.log('page::', page)
-    const lala = await page.getByTestId('title').isVisible()
-    console.log('lala:::', lala)
+    const element = await page.getByTestId('title').isVisible()
 
-    expect(lala).toBe(true)
+    expect(element).toBe(true)
   })
 })
