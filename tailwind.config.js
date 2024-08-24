@@ -12,8 +12,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-lato)', ...fontFamily.sans],
-      },
+        sans: ['var(--font-lato)', ...fontFamily.sans]
+      }
     }
   },
   plugins: []
