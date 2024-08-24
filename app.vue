@@ -1,6 +1,17 @@
+<script setup lang="ts">
+  const { setLocale } = useI18n()
+</script>
+
 <template>
-  <div>
-    <h1 class="text-2xl text-red-200">app</h1>
+  <div class="w-full h-full flex flex-col">
+    <ul class="bg-black w-full flex flex-row flex-wrap gap-5">
+      <li>
+        <button class="text-white" @click="setLocale('en')">en</button>
+      </li>
+      <li>
+        <button class="text-white" @click="setLocale('fr')">fr</button>
+      </li>
+    </ul>
     <NuxtPage />
   </div>
 </template>

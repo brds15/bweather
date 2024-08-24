@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 const useWeatherStore = defineStore({
   id: 'weather',
   state: () => ({
-    notifications: ['firsts'] as string[]
+    notifications: ['first'] as string[]
   })
 })
 
