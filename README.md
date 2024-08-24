@@ -1,75 +1,48 @@
-# Nuxt 3 Minimal Starter
+# ☁️ ☀️ BWEATHER
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Application for checking weather.
 
-## Setup
+# Goals
 
-Make sure to install the dependencies:
+- Search weather by city, by current localization or typed
+- Show weather information
+- Show the history of searching
+- Show the favorites
 
-```bash
-# npm
-npm install
+# Characters
 
-# pnpm
-pnpm install
+- [Nuxt 3](https://nuxt.com/docs/getting-started/introduction)
+- Vue 3
+- TypeScript, JS with strongly type power
+- Pinia as state management
+- Eslint + Prettier for formatting rules and code quality
+- Vitest
+- i18n
+- Tailwind
 
-# yarn
-yarn install
+# Getting started
 
-# bun
-bun install
+Prerequisites
+- node >= 20
+- [nvm](https://github.com/nvm-sh/nvm)
+- npm
+
+Execute these below commands
+
+```sh
+nvm install 22 #from version 20, 22 recommended
+nvm use 22
+git clone git@github.com:brds15/bbweather
+cd bbweather
+cp .env.exemple .env # to create env file
+npm install # to install dependencies
+npm run dev # open localhost:3000
 ```
 
-## Development Server
+# Diary of developing
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
 
 ## Production
+- Deployed by Vercel
+- Access: https://bweather.vercel.app/
 
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
