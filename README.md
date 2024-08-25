@@ -19,6 +19,7 @@ Application for checking weather.
 - Vitest
 - i18n
 - Tailwind
+- Data source from Openweather
 
 # Getting started
 
