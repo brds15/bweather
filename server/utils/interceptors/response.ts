@@ -1,6 +1,6 @@
-import snakeToCamel from '~/utils/transformers/snakeToCamel'
+import snakeToCamel from '~/server/utils/transformers/snakeToCamel'
 
-function convertResponse(response: any) {
+function convertToCamelResponse(response: any) {
   let parentKeys = Object.keys(response)
 
   parentKeys.forEach(key => {
@@ -12,11 +12,11 @@ function convertResponse(response: any) {
     response[newKey] = currentObj
 
     if (typeof response[newKey] === 'object') {
-      convertResponse(response[newKey])
+      convertToCamelResponse(response[newKey])
     }
   })
 
   return response
 }
 
-export default convertResponse
+export default convertToCamelResponse
