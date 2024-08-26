@@ -14,9 +14,9 @@ const useLocationStore = defineStore({
       this.locations = newValue
     },
     async loadLocations() {
-      const result = await $fetch(`/api/weather/location/${this.locationToSearch}`)
-
-      this.setLocations(result)
+      $fetch(`/api/weather/location/${this.locationToSearch}`)
+        .then(response => this.setLocations(response))
+        .catch(e => console.error('error::', e))
     },
     setLocationToSearch(newValue: string) {
       this.locationToSearch = newValue

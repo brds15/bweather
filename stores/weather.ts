@@ -14,9 +14,9 @@ const useWeatherStore = defineStore({
   }),
   actions: {
     async loadWeatherData() {
-      this.weather = await $fetch(
-        `${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`
-      )
+      await $fetch(`${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`)
+        .then(response => (this.weather = response))
+        .catch(e => console.error('error::', e))
     },
     setCanSearchingByGeo(newStatus: boolean) {
       this.canSearchingByGeo = newStatus
