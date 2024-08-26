@@ -30,6 +30,18 @@
       {{ $t('welcome') }}
     </span>
     <hr class="w-full" />
+    <span>history</span>
+    <ul>
+      <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
+        <div
+          class="flex flex-row items-center cursor-pointer"
+          @click="weatherStore.loadWeatherDataByCoordinates(item)"
+        >
+          <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+          <Button :text="item.location" />
+        </div>
+      </li>
+    </ul>
     <SearchForm />
     <form class="flex flex-row gap-2" @submit.prevent="locationStore.loadLocations()">
       <Button
@@ -48,7 +60,7 @@
       <li v-for="(item, index) in locationStore.locations" :key="index">
         <div
           class="flex flex-row items-center cursor-pointer"
-          @click="weatherStore.loadWeatherDataByCoordinates(item.cordinates)"
+          @click="locationStore.handleLocationSearch(item)"
         >
           <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
           <Button :text="item.location" />
