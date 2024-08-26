@@ -10,9 +10,9 @@ const useWeatherStore = defineStore({
   }),
   actions: {
     async loadWeatherData() {
-      console.log('coordinates store::', this.coordinates)
-
-      this.weather = await $fetch('/api/weather/general')
+      this.weather = await $fetch(
+        `/api/weather/general/${this.coordinates.latitude}/${this.coordinates.longitude}`
+      )
     },
     setCanSearchingByGeo(newStatus: boolean) {
       this.canSearchingByGeo = newStatus
