@@ -1,4 +1,4 @@
-import snakeToCamel from '~/server/utils/transformers/snakeToCamel'
+import snakeToCamel from '~/server/utils/snakeToCamel'
 
 function convertToCamelResponse(response: any) {
   let parentKeys = Object.keys(response)
