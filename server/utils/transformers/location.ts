@@ -13,7 +13,7 @@ function transformerLocationData(locations: Locations) {
     return [
       ...acc,
       {
-        cordinates: { latitude: current.lat, longitude: current.lon },
+        coordinates: { latitude: current.lat, longitude: current.lon },
         country: current.country.toLowerCase(),
         location: `${current.name}${complement}`,
         name: current.name

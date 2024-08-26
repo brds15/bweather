@@ -16,7 +16,7 @@ export interface Location {
 export type Locations = Location[]
 
 export interface LocationItem {
-  cordinates: Coordinates
+  coordinates: Coordinates
   country: string
   location: string
   name: string

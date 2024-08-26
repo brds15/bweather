@@ -3,6 +3,8 @@ import type { Coordinates, WeatherData } from '~/types/weather'
 import useLocationStore from '~/stores/location'
 import type { LocationItem } from '~/types/location'
 
+const WEATHER_API_URL = '/api/weather/general/'
+
 const useWeatherStore = defineStore({
   id: 'weather',
   state: () => ({
@@ -13,7 +15,7 @@ const useWeatherStore = defineStore({
   actions: {
     async loadWeatherData() {
       this.weather = await $fetch(
-        `/api/weather/general/${this.coordinates.latitude}/${this.coordinates.longitude}`
+        `${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`
       )
     },
     setCanSearchingByGeo(newStatus: boolean) {
@@ -24,11 +26,11 @@ const useWeatherStore = defineStore({
     },
     async loadWeatherDataByCoordinates(locationItem: LocationItem) {
       const locationStore = useLocationStore()
-      const { cordinates } = locationItem
+      const { coordinates } = locationItem
 
       locationStore.setLocationHistory(locationItem)
 
-      this.setCoordinates(cordinates)
+      this.setCoordinates(coordinates)
       this.loadWeatherData()
     }
   }
