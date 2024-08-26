@@ -35,7 +35,7 @@
       <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
         <div
           class="flex flex-row items-center cursor-pointer"
-          @click="weatherStore.loadWeatherDataByCoordinates(item)"
+          @click="weatherStore.handleWeatherDataWithHistory(item)"
         >
           <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
           <Button :text="item.location" />
@@ -43,12 +43,14 @@
       </li>
     </ul>
     <SearchForm />
-    <form class="flex flex-row gap-2" @submit.prevent="locationStore.loadLocations()">
-      <Button
+    <form class="flex flex-row items-center gap-2" @submit.prevent="locationStore.loadLocations()">
+      <div
         v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
-        text="By Current Coord"
-        @click="weatherStore.loadWeatherData()"
-      />
+        @click="weatherStore.handleWeatherDataWithCoordinatesHistory()"
+        class="cursor-pointer"
+      >
+        <Icon name="ic:sharp-gps-fixed" size="1.5em" style="color: black" />
+      </div>
       <Input
         placeholder="Search"
         type="text"

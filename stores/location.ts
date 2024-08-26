@@ -14,11 +14,6 @@ const useLocationStore = defineStore({
     setLocations(newValue: LocationsItems) {
       this.locations = newValue
     },
-    async loadLocations() {
-      $fetch(`/api/weather/location/${this.locationToSearch}`)
-        .then(response => this.setLocations(response))
-        .catch(e => console.error('error::', e))
-    },
     setLocationToSearch(newValue: string) {
       this.locationToSearch = newValue
     },
@@ -32,9 +27,15 @@ const useLocationStore = defineStore({
     handleLocationSearch(locationItem: LocationItem) {
       const weatherStore = useWeatherStore()
 
-      weatherStore.loadWeatherDataByCoordinates(locationItem).finally(() => this.setResetLocation())
+      weatherStore.handleWeatherDataWithHistory(locationItem).finally(() => this.setResetLocation())
+    },
+    async loadLocations() {
+      $fetch(`/api/weather/location/${this.locationToSearch}`)
+        .then(response => this.setLocations(response))
+        .catch(e => console.error('error::', e))
     },
     async loadLocationsByCoordinates(coordinates: Coordinates) {
+      console.log('aquii')
       $fetch(`/api/weather/location/${coordinates.latitude}/${coordinates.longitude}`)
         .then(response => this.setLocationHistory(response[0]))
         .catch(e => console.error('error::', e))

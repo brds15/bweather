@@ -13,10 +13,8 @@ const useWeatherStore = defineStore({
     weather: {} as WeatherData
   }),
   actions: {
-    async loadWeatherData() {
-      await $fetch(`${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`)
-        .then(response => (this.weather = response))
-        .catch(e => console.error('error::', e))
+    setWeather(newWeather: WeatherData) {
+      this.weather = newWeather
     },
     setCanSearchingByGeo(newStatus: boolean) {
       this.canSearchingByGeo = newStatus
@@ -24,14 +22,25 @@ const useWeatherStore = defineStore({
     setCoordinates(coordinates: Coordinates) {
       this.coordinates = coordinates
     },
-    async loadWeatherDataByCoordinates(locationItem: LocationItem) {
+    async loadWeatherData() {
+      await $fetch(`${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`)
+        .then(response => this.setWeather(response))
+        .catch(e => console.error('error::', e))
+    },
+    async handleWeatherDataWithHistory(locationItem: LocationItem) {
       const locationStore = useLocationStore()
-      const { coordinates } = locationItem
 
       locationStore.setLocationHistory(locationItem)
 
-      this.setCoordinates(coordinates)
+      this.setCoordinates(locationItem.coordinates)
+
       this.loadWeatherData()
+    },
+    handleWeatherDataWithCoordinatesHistory() {
+      this.loadWeatherData()
+
+      const locationStore = useLocationStore()
+      locationStore.loadLocationsByCoordinates(this.coordinates)
     }
   }
 })
