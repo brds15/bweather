@@ -1,7 +1,7 @@
 import { WeatherData } from '~/types/weather'
 import convertToCamelResponse from '~/server/utils/interceptors/response'
 
-const ENDPOINT = 'onecall'
+const ENDPOINT = 'data/3.0/onecall'
 const QUERY_PARAMS = '&units=metric&lang=pt_br&exclude=minutely&exclude=alerts'
 
 export default defineEventHandler(async (event) => {
