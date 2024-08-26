@@ -1,14 +1,24 @@
-type LocalNames = {
-  [key: string]: string;
-};
+import type { Coordinates } from '~/types/weather'
 
-interface Location {
-  country: string;
-  lat: number;
-  localNames?: LocalNames;
-  lon: number;
-  name: string;
-  state?: string;
+type LocalNames = {
+  [key: string]: string
 }
 
-export type Locations = Location[];
+export interface Location {
+  country: string
+  lat: number
+  localNames?: LocalNames
+  lon: number
+  name: string
+  state?: string
+}
+
+export type Locations = Location[]
+
+export interface LocationInfo {
+  cordinates: Coordinates
+  location: string
+  name: string
+}
+
+export type LocationsInfo = LocationInfo[]

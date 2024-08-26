@@ -26,7 +26,7 @@
 
   const debouncedSetLocation = debounce((value: string) => {
     locationStore.setLocationToSearch(value)
-  }, 300)
+  }, 200)
 </script>
 
 <template>
@@ -36,15 +36,26 @@
     </span>
     <hr class="w-full" />
     <SearchForm />
-    <Input type="text" placeholder="Search" @change="e => debouncedSetLocation(e.target.value)" />
-    <Button
-      v-if="locationStore.locationToSearch"
-      text="By City"
-      @click="locationStore.loadLocations()"
-    />
+    <div class="flex flex-row gap-2">
+      <Input type="text" placeholder="Search" @change="e => debouncedSetLocation(e.target.value)" />
+      <Button
+        v-if="locationStore.locationToSearch"
+        text="By City"
+        @click="locationStore.loadLocations()"
+      />
+    </div>
+    <ul>
+      <li v-for="item in locationStore.locations">
+        <Button
+          :text="item.location"
+          @click="weatherStore.loadWeatherDataByCoordinates(item.cordinates)"
+        />
+      </li>
+    </ul>
     <pre class="bg-black text-white">
       {{ locationStore.locations }}
     </pre>
+
     <Button
       v-if="weatherStore.canSearchingByGeo"
       text="By Coord"

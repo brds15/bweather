@@ -19,6 +19,10 @@ const useWeatherStore = defineStore({
     },
     setCoordinates(coordinates: Coordinates) {
       this.coordinates = coordinates
+    },
+    async loadWeatherDataByCoordinates(coords: Coordinates) {
+      this.setCoordinates(coords)
+      this.loadWeatherData()
     }
   }
 })
