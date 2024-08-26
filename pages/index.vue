@@ -33,7 +33,7 @@
     <SearchForm />
     <form class="flex flex-row gap-2" @submit.prevent="locationStore.loadLocations()">
       <Button
-        v-if="weatherStore.canSearchingByGeo"
+        v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
         text="By Current Coord"
         @click="weatherStore.loadWeatherData()"
       />
