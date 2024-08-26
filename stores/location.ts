@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import type { LocationItem, LocationsItems } from '~/types/location'
 import useWeatherStore from '~/stores/weather'
+import type { Coordinates } from '~/types/weather'
 
 const useLocationStore = defineStore({
   id: 'location',
@@ -32,6 +33,11 @@ const useLocationStore = defineStore({
       const weatherStore = useWeatherStore()
 
       weatherStore.loadWeatherDataByCoordinates(locationItem).finally(() => this.setResetLocation())
+    },
+    async loadLocationsByCoordinates(coordinates: Coordinates) {
+      $fetch(`/api/weather/location/${coordinates.latitude}/${coordinates.longitude}`)
+        .then(response => this.setLocationHistory(response[0]))
+        .catch(e => console.error('error::', e))
     }
   }
 })
