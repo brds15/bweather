@@ -5,6 +5,5 @@
 <template>
   <div>
     <h1>SearchForm</h1>
-    <Input type="text" placeholder="Search" />
   </div>
 </template>

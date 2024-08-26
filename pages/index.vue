@@ -1,12 +1,16 @@
 <script setup lang="ts">
+  import debounce from '~/utils/debounce'
+  import useLocationStore from '~/stores/location'
   import useWeatherStore from '~/stores/weather'
   import getCurrentCoordinates from '~/utils/web-apis/navigator'
   import Button from '~/components/atoms/Button.vue'
   import CityList from '~/components/templates/CityList.vue'
   import SearchForm from '~/components/templates/SearchForm.vue'
   import WeatherViewer from '~/components/templates/WeatherViewer.vue'
+  import Input from '~/components/atoms/Input.vue'
 
   const weatherStore = useWeatherStore()
+  const locationStore = useLocationStore()
 
   onMounted(() => {
     getCurrentCoordinates()
@@ -19,6 +23,10 @@
         console.error(error.message)
       })
   })
+
+  const debouncedSetLocation = debounce((value: string) => {
+    locationStore.setLocationToSearch(value)
+  }, 300)
 </script>
 
 <template>
@@ -28,6 +36,15 @@
     </span>
     <hr class="w-full" />
     <SearchForm />
+    <Input type="text" placeholder="Search" @change="e => debouncedSetLocation(e.target.value)" />
+    <Button
+      v-if="locationStore.locationToSearch"
+      text="By City"
+      @click="locationStore.loadLocations()"
+    />
+    <pre class="bg-black text-white">
+      {{ locationStore.locations }}
+    </pre>
     <Button
       v-if="weatherStore.canSearchingByGeo"
       text="By Coord"
