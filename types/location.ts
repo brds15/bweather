@@ -15,11 +15,11 @@ export interface Location {
 
 export type Locations = Location[]
 
-export interface LocationInfo {
+export interface LocationItem {
   cordinates: Coordinates
   country: string
   location: string
   name: string
 }
 
-export type LocationsInfo = LocationInfo[]
+export type LocationsItems = LocationItem[]

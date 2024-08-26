@@ -1,13 +1,13 @@
-import { Location, Locations, LocationsInfo } from '~/types/location'
+import { Location, Locations, LocationsItems } from '~/types/location'
 
-function unifyLocations(locations: LocationsInfo) {
+function unifyLocations(locations: LocationsItems) {
   return locations.filter((item, index, self) => {
     return index === self.findIndex(currentLocation => currentLocation.location === item.location)
   })
 }
 
 function transformerLocationData(locations: Locations) {
-  const formatedList = locations.reduce((acc: LocationsInfo, current: Location) => {
+  const formatedList = locations.reduce((acc: LocationsItems, current: Location) => {
     const complement = current?.state ? `, ${current?.state}` : ''
 
     return [

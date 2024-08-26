@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
-import type { LocationsInfo } from '~/types/location'
+import type { LocationsItems } from '~/types/location'
 
 const useLocationStore = defineStore({
   id: 'location',
   state: () => ({
-    locations: [] as LocationsInfo,
-    locationToSearch: '' as string
+    locations: [] as LocationsItems,
+    locationToSearch: '' as string,
+    locationsHistory: [] as LocationsItems[],
   }),
   actions: {
     async loadLocations() {
