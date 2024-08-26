@@ -8,11 +8,14 @@ function unifyLocations(locations: LocationsInfo) {
 
 function transformerLocationData(locations: Locations) {
   const formatedList = locations.reduce((acc: LocationsInfo, current: Location) => {
+    const complement = current?.state ? `, ${current?.state}` : ''
+
     return [
       ...acc,
       {
         cordinates: { latitude: current.lat, longitude: current.lon },
-        location: `${current.country} | ${current.name} | ${current.state}`,
+        country: current.country.toLowerCase(),
+        location: `${current.name}${complement}`,
         name: current.name
       }
     ]

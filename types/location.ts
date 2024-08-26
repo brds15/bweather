@@ -17,6 +17,7 @@ export type Locations = Location[]
 
 export interface LocationInfo {
   cordinates: Coordinates
+  country: string
   location: string
   name: string
 }

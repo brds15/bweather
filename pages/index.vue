@@ -1,5 +1,4 @@
 <script setup lang="ts">
-  import debounce from '~/utils/debounce'
   import useLocationStore from '~/stores/location'
   import useWeatherStore from '~/stores/weather'
   import getCurrentCoordinates from '~/utils/web-apis/navigator'
@@ -23,10 +22,6 @@
         console.error(error.message)
       })
   })
-
-  const debouncedSetLocation = debounce((value: string) => {
-    locationStore.setLocationToSearch(value)
-  }, 200)
 </script>
 
 <template>
@@ -36,35 +31,37 @@
     </span>
     <hr class="w-full" />
     <SearchForm />
-    <div class="flex flex-row gap-2">
-      <Input type="text" placeholder="Search" @change="e => debouncedSetLocation(e.target.value)" />
+    <form class="flex flex-row gap-2" @submit.prevent="locationStore.loadLocations()">
       <Button
-        v-if="locationStore.locationToSearch"
-        text="By City"
-        @click="locationStore.loadLocations()"
+        v-if="weatherStore.canSearchingByGeo"
+        text="By Current Coord"
+        @click="weatherStore.loadWeatherData()"
       />
-    </div>
+      <Input
+        placeholder="Search"
+        type="text"
+        @change="e => locationStore.setLocationToSearch(e.target.value)"
+      />
+      <Button type="submit" text="By City" />
+    </form>
     <ul>
-      <li v-for="item in locationStore.locations">
-        <Button
-          :text="item.location"
+      <li v-for="(item, index) in locationStore.locations" :key="index">
+        <div
+          class="flex flex-row items-center cursor-pointer"
           @click="weatherStore.loadWeatherDataByCoordinates(item.cordinates)"
-        />
+        >
+          <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+          <Button :text="item.location" />
+        </div>
       </li>
     </ul>
     <pre class="bg-black text-white">
       {{ locationStore.locations }}
     </pre>
-
-    <Button
-      v-if="weatherStore.canSearchingByGeo"
-      text="By Coord"
-      @click="weatherStore.loadWeatherData()"
-    />
     <hr class="w-full" />
     <CityList />
     <hr class="w-full" />
-    <pre class="bg-black text-white">
+    <pre class="bg-black text-white h-80 overflow-auto">
       {{ weatherStore.weather }}
     </pre>
     <WeatherViewer />
