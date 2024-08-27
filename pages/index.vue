@@ -94,19 +94,6 @@
     <hr class="w-full" />
     <CityList />
     <hr class="w-full" />
-    <form
-      @submit.prevent="
-        locationStore.handleSaveLocation({
-          latitude: weatherStore.weather.lat,
-          longitude: weatherStore.weather.lon
-        })
-      "
-    >
-      <Button v-if="weatherStore.weather.lat" type="submit" text="Save" />
-    </form>
-    <pre class="bg-black text-white h-80 overflow-auto">
-      {{ weatherStore.weather }}
-    </pre>
     <WeatherViewer />
   </div>
 </template>

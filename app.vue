@@ -3,13 +3,13 @@
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col">
-    <ul class="bg-black w-full flex flex-row flex-wrap gap-5">
+  <div class="w-full h-full flex flex-col bg-sky-600">
+    <ul class="bg-gray-200 w-full flex flex-row flex-wrap gap-5">
       <li>
-        <button class="text-white" @click="setLocale('en')">en</button>
+        <button @click="setLocale('en')">english</button>
       </li>
       <li>
-        <button class="text-white" @click="setLocale('fr')">fr</button>
+        <button @click="setLocale('fr')">french</button>
       </li>
     </ul>
     <NuxtPage />
