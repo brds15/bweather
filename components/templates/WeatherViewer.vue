@@ -22,16 +22,19 @@
     >
       <Button v-if="weatherStore.weather.lat" type="submit" text="Save" />
     </form>
-    <div class="h-80 bg-sky-600 w-1/2 overflow-auto">
-      <p class="text-7xl font-extrabold">28°</p>
-      <NuxtImg
-        v-if="weatherStore.weather.lat"
-        :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
-        format="webp"
-        placeholder="./placeholder.png"
-        preload
-        quality="80"
-      />
+    <div class="flex flex-col justify-center items-center h-80 bg-sky-600 w-1/2 overflow-auto">
+      <div>
+        <p class="text-7xl font-extrabold text-white">28°</p>
+        <NuxtImg
+          v-if="weatherStore.weather.lat"
+          :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
+          class="z-10"
+          format="webp"
+          placeholder="./placeholder.png"
+          preload
+          quality="80"
+        />
+      </div>
     </div>
 
     <pre class="bg-black text-white w-full">

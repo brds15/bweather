@@ -4,7 +4,7 @@
 
 <template>
   <div class="w-full h-full flex flex-col bg-sky-600">
-    <ul class="bg-gray-200 w-full flex flex-row flex-wrap gap-5">
+    <ul class="bg-gray-200 w-full flex flex-row flex-wrap gap-5 px-4">
       <li>
         <button @click="setLocale('en')">english</button>
       </li>
