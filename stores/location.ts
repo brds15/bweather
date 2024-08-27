@@ -7,7 +7,8 @@ const useLocationStore = defineStore('location', {
   state: () => ({
     locations: [] as LocationsItems,
     locationToSearch: '' as string,
-    locationsHistory: [] as LocationsItems
+    locationsHistory: [] as LocationsItems,
+    locationsSaved: [] as LocationsItems
   }),
   persist: {
     storage: persistedState.localStorage
@@ -22,9 +23,15 @@ const useLocationStore = defineStore('location', {
     setLocationHistory(locationItem: LocationItem) {
       this.locationsHistory.push(locationItem)
     },
+    setLocationSaved(locationItem: LocationItem) {
+      this.locationsSaved.push(locationItem)
+    },
     handleResetLocation() {
       this.setLocationToSearch('')
       this.setLocations([])
+    },
+    resetLocationHistory() {
+      this.locationsHistory = []
     },
     handleLocationSearch(locationItem: LocationItem) {
       const weatherStore = useWeatherStore()

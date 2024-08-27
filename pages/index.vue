@@ -30,18 +30,34 @@
       {{ $t('welcome') }}
     </span>
     <hr class="w-full" />
-    <span>history</span>
-    <ul>
-      <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
-        <div
-          class="flex flex-row items-center cursor-pointer"
-          @click="weatherStore.handleWeatherDataWithHistory(item)"
-        >
-          <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
-          <Button :text="item.location" />
-        </div>
-      </li>
-    </ul>
+
+    <div class="flex flex-row">
+      <span>history</span>
+     <Button text="Clear history" @click="locationStore.resetLocationHistory" />
+      <ul>
+        <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
+          <div
+            class="flex flex-row items-center cursor-pointer"
+            @click="weatherStore.handleWeatherDataWithHistory(item)"
+          >
+            <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+            <Button :text="item.location" />
+          </div>
+        </li>
+      </ul>
+      <span>saved</span>
+      <ul>
+        <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
+          <div
+            class="flex flex-row items-center cursor-pointer"
+            @click="weatherStore.handleWeatherDataWithHistory(item)"
+          >
+            <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+            <Button :text="item.location" />
+          </div>
+        </li>
+      </ul>
+    </div>
     <SearchForm />
     <form class="flex flex-row items-center gap-2" @submit.prevent="locationStore.loadLocations()">
       <div
