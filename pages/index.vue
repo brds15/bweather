@@ -1,15 +1,9 @@
 <script setup lang="ts">
-  import useLocationStore from '~/stores/location'
   import useWeatherStore from '~/stores/weather'
   import getCurrentCoordinates from '~/utils/web-apis/navigator'
-  import Button from '~/components/atoms/Button.vue'
-  import CityList from '~/components/templates/CityList.vue'
   import SearchForm from '~/components/templates/SearchForm.vue'
-  import WeatherViewer from '~/components/templates/WeatherViewer.vue'
-  import Input from '~/components/atoms/Input.vue'
 
   const weatherStore = useWeatherStore()
-  const locationStore = useLocationStore()
 
   onMounted(() => {
     getCurrentCoordinates()
@@ -29,71 +23,6 @@
     <span data-testid="title">
       {{ $t('welcome') }}
     </span>
-    <hr class="w-full" />
-
-    <div class="flex flex-row">
-      <span>history</span>
-      <Button text="Clear history" @click="locationStore.resetLocationHistory" />
-      <ul>
-        <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
-          <div
-            class="flex flex-row items-center cursor-pointer"
-            @click="weatherStore.handleWeatherDataWithHistory(item)"
-          >
-            <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
-            <Button :text="item.location" />
-          </div>
-        </li>
-      </ul>
-      <span>saved</span>
-      <ul>
-        <li v-for="(item, index) in locationStore.locationsSaved" :key="index">
-          <div
-            class="flex flex-row items-center cursor-pointer"
-            @click="weatherStore.handleWeatherDataWithHistory(item)"
-          >
-            <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
-            <Button :text="item.location" />
-          </div>
-          <div class="cursor-pointer" @click="locationStore.removeSaveLocation(item)">
-            <Icon name="ic:baseline-delete-outline" size="1.5em" style="color: black" />
-          </div>
-        </li>
-      </ul>
-    </div>
     <SearchForm />
-    <form class="flex flex-row items-center gap-2" @submit.prevent="locationStore.loadLocations()">
-      <div
-        v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
-        @click="weatherStore.handleWeatherDataWithCoordinatesHistory()"
-        class="cursor-pointer"
-      >
-        <Icon name="ic:sharp-gps-fixed" size="1.5em" style="color: black" />
-      </div>
-      <Input
-        placeholder="Search"
-        type="text"
-        @change="e => locationStore.setLocationToSearch(e.target.value)"
-      />
-      <Button type="submit" text="By City" />
-    </form>
-    <ul>
-      <li v-for="(item, index) in locationStore.locations" :key="index">
-        <div
-          class="flex flex-row items-center cursor-pointer"
-          @click="locationStore.handleLocationSearch(item)"
-        >
-          <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
-          <Button :text="item.location" />
-        </div>
-      </li>
-    </ul>
-    <pre class="bg-black text-white">
-      {{ locationStore.locations }}
-    </pre>
-    <hr class="w-full" />
-    <CityList />
-    <hr class="w-full" />
-
   </div>
 </template>
