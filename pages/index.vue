@@ -94,6 +94,6 @@
     <hr class="w-full" />
     <CityList />
     <hr class="w-full" />
-    <WeatherViewer />
+
   </div>
 </template>
