@@ -33,7 +33,7 @@
 
     <div class="flex flex-row">
       <span>history</span>
-     <Button text="Clear history" @click="locationStore.resetLocationHistory" />
+      <Button text="Clear history" @click="locationStore.resetLocationHistory" />
       <ul>
         <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
           <div
@@ -94,7 +94,16 @@
     <hr class="w-full" />
     <CityList />
     <hr class="w-full" />
-    <Button v-if="weatherStore.weather.lat" text="Save" @click="locationStore.handleSaveLocation({latitude: weatherStore.weather.lat, longitude: weatherStore.weather.lon})" />
+    <form
+      @submit.prevent="
+        locationStore.handleSaveLocation({
+          latitude: weatherStore.weather.lat,
+          longitude: weatherStore.weather.lon
+        })
+      "
+    >
+      <Button v-if="weatherStore.weather.lat" type="submit" text="Save" />
+    </form>
     <pre class="bg-black text-white h-80 overflow-auto">
       {{ weatherStore.weather }}
     </pre>
