@@ -1,15 +1,17 @@
 import { defineStore } from 'pinia'
-import type { LocationItem, LocationsItems } from '~/types/location'
 import useWeatherStore from '~/stores/weather'
+import type { LocationItem, LocationsItems } from '~/types/location'
 import type { Coordinates } from '~/types/weather'
 
-const useLocationStore = defineStore({
-  id: 'location',
+const useLocationStore = defineStore('location', {
   state: () => ({
     locations: [] as LocationsItems,
     locationToSearch: '' as string,
     locationsHistory: [] as LocationsItems
   }),
+  persist: {
+    storage: persistedState.localStorage
+  },
   actions: {
     setLocations(newValue: LocationsItems) {
       this.locations = newValue
@@ -20,14 +22,16 @@ const useLocationStore = defineStore({
     setLocationHistory(locationItem: LocationItem) {
       this.locationsHistory.push(locationItem)
     },
-    setResetLocation() {
+    handleResetLocation() {
       this.setLocationToSearch('')
       this.setLocations([])
     },
     handleLocationSearch(locationItem: LocationItem) {
       const weatherStore = useWeatherStore()
 
-      weatherStore.handleWeatherDataWithHistory(locationItem).finally(() => this.setResetLocation())
+      weatherStore
+        .handleWeatherDataWithHistory(locationItem)
+        .finally(() => this.handleResetLocation())
     },
     async loadLocations() {
       $fetch(`/api/weather/location/${this.locationToSearch}`)
@@ -35,7 +39,6 @@ const useLocationStore = defineStore({
         .catch(e => console.error('error::', e))
     },
     async loadLocationsByCoordinates(coordinates: Coordinates) {
-      console.log('aquii')
       $fetch(`/api/weather/location/${coordinates.latitude}/${coordinates.longitude}`)
         .then(response => this.setLocationHistory(response[0]))
         .catch(e => console.error('error::', e))
