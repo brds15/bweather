@@ -12,9 +12,13 @@ export default defineEventHandler(async event => {
 
   const api = `${runtimeConfig.public.apiBase}${ENDPOINT}?lat=${latitude}&lon=${longitude}${QUERY_PARAMS}&appid=${runtimeConfig.apiSecret}`
 
-  const result = await $fetch<Locations>(api)
+  try {
+    const result = await $fetch<Locations>(api)
+    const convertedResult = convertToCamelResponse(result)
+    const transformedLocationData = transformerLocationData(convertedResult)
 
-  const convertedResult = convertToCamelResponse(result)
-
-  return transformerLocationData(convertedResult)
+    return transformedLocationData[0]
+  } catch (error) {
+    throw error
+  }
 })

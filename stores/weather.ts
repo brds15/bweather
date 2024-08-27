@@ -36,11 +36,14 @@ const useWeatherStore = defineStore({
 
       this.loadWeatherData()
     },
-    handleWeatherDataWithCoordinatesHistory() {
+    async handleWeatherDataWithCoordinatesHistory() {
       this.loadWeatherData()
 
       const locationStore = useLocationStore()
-      locationStore.loadLocationsByCoordinates(this.coordinates)
+      const locationItem = await locationStore.loadLocationsByCoordinates(this.coordinates)
+
+
+      if (locationItem) locationStore.saveLocationHistory(locationItem)
     }
   }
 })

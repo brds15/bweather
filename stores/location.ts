@@ -40,15 +40,42 @@ const useLocationStore = defineStore('location', {
         .handleWeatherDataWithHistory(locationItem)
         .finally(() => this.handleResetLocation())
     },
+    saveLocationHistory(locationItem: LocationItem) {
+      this.setLocationHistory(locationItem)
+    },
+    removeSaveLocation(locationItem: LocationItem) {
+      const { coordinates } = locationItem
+
+      this.locationsSaved = this.locationsSaved.filter(
+        (item: LocationItem) =>
+          item.coordinates.latitude !== coordinates.latitude &&
+          item.coordinates.longitude !== coordinates.longitude
+      )
+    },
+    async handleSaveLocation(coordinates: Coordinates) {
+      const locationItem = await this.loadLocationsByCoordinates(coordinates)
+
+      if (locationItem) this.setLocationSaved(locationItem)
+    },
     async loadLocations() {
       $fetch(`/api/weather/location/${this.locationToSearch}`)
         .then(response => this.setLocations(response))
         .catch(e => console.error('error::', e))
     },
     async loadLocationsByCoordinates(coordinates: Coordinates) {
-      $fetch(`/api/weather/location/${coordinates.latitude}/${coordinates.longitude}`)
-        .then(response => this.setLocationHistory(response[0]))
-        .catch(e => console.error('error::', e))
+      try {
+        const response = await $fetch(
+          `/api/weather/location/${coordinates.latitude}/${coordinates.longitude}`
+        )
+
+        if (response) {
+          return response
+        }
+
+        console.error('locations not found')
+      } catch (e) {
+        console.error('error::', e)
+      }
     }
   }
 })

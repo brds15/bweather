@@ -47,13 +47,16 @@
       </ul>
       <span>saved</span>
       <ul>
-        <li v-for="(item, index) in locationStore.locationsHistory" :key="index">
+        <li v-for="(item, index) in locationStore.locationsSaved" :key="index">
           <div
             class="flex flex-row items-center cursor-pointer"
             @click="weatherStore.handleWeatherDataWithHistory(item)"
           >
             <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
             <Button :text="item.location" />
+          </div>
+          <div class="cursor-pointer" @click="locationStore.removeSaveLocation(item)">
+            <Icon name="ic:baseline-delete-outline" size="1.5em" style="color: black" />
           </div>
         </li>
       </ul>
@@ -91,6 +94,7 @@
     <hr class="w-full" />
     <CityList />
     <hr class="w-full" />
+    <Button v-if="weatherStore.weather.lat" text="Save" @click="locationStore.handleSaveLocation({latitude: weatherStore.weather.lat, longitude: weatherStore.weather.lon})" />
     <pre class="bg-black text-white h-80 overflow-auto">
       {{ weatherStore.weather }}
     </pre>
