@@ -6,7 +6,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     apiSecret: process.env.OPEN_WEATHER_API_KEY,
     public: {
-      apiBase: process.env.OPEN_WEATHER_API_BASE
+      apiBase: process.env.OPEN_WEATHER_API_BASE,
+      imageBase: process.env.OPEN_WEATHER_IMAGE_BASE
     }
   },
   modules: [
@@ -18,7 +19,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@pinia/nuxt',
     '@pinia-plugin-persistedstate/nuxt',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxt/image'
   ],
   i18n: {
     vueI18n: './locales/i18n.config.ts'
