@@ -6,6 +6,11 @@
 
   const weatherStore = useWeatherStore()
   const locationStore = useLocationStore()
+
+  async function handleCurrentPosition() {
+    await weatherStore.handleWeatherDataWithCoordinatesHistory()
+    await navigateTo('/weather')
+  }
 </script>
 
 <template>
@@ -17,7 +22,7 @@
       <div
         v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
         class="cursor-pointer flex items-center pl-2"
-        @click="weatherStore.handleWeatherDataWithCoordinatesHistory()"
+        @click="handleCurrentPosition"
       >
         <Icon name="ic:sharp-gps-fixed" size="1.3em" style="color: #0c4a6e" />
       </div>
