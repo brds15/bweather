@@ -17,22 +17,13 @@
 </script>
 
 <template>
-  <div class="w-full h-auto flex flex-col items-center justify-around p-6">
-    <form @submit.prevent="handleSave" class="w-full flex justify-center">
-      <div class="w-36">
-        <Button
-          v-if="weatherStore.weather.lat"
-          type="submit"
-          :text="$t('weather.weatherViewer.save')"
-        />
-      </div>
-    </form>
-    <div class="w-full flex items-center justify-around p-6">
-      <div></div>
+  <div class="w-full h-auto flex flex-col items-center justify-between p-6">
+    <div class="w-full flex flex-col items-center gap-5 mt-14 md:flex-row md:justify-around md:items-start">
+      <div class="flex-1 border-2"></div>
       <div
-        class="flex-col justify-between items-center bg-sky-600 w-[362px] overflow-auto rounded-lg p-10"
+        class="flex-col justify-between items-center bg-sky-700 w-[366px] overflow-auto rounded-lg p-10"
       >
-        <div class="flex-col justify-between items-center">
+        <div class="w-full flex-col justify-between items-center">
           <div class="flex flex-col justify-center items-center leading-3">
             <h4 class="text-3xl text-white">
               {{ locationStore.lastLocationName }}
@@ -41,10 +32,15 @@
               {{ weatherStore.weatherDescription }}
             </span>
           </div>
-          <div class="relative z-10 mt-4 flex justify-center">
+          <div class="w-full relative mt-4 flex flex-col justify-center">
+            <span
+              class="relative top-[40px] left-[10px] text-5xl font-extrabold text-white text-center z-0 sm:text-7xl sm:top-[23px] sm:left-[13px]"
+            >
+              28°
+            </span>
             <NuxtImg
               v-if="weatherStore.weather.lat"
-              class="relative border-4"
+              class="relative z-10 border-4 bottom-[48px] sm:bottom-[72px]"
               format="webp"
               :placeholder="WEATHER_PLACEHOLDER_SRC"
               preload
@@ -52,12 +48,18 @@
               :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
             />
           </div>
-          <p class="relative bottom-[12.75rem] left-24 text-7xl font-extrabold text-white z-0">
-            28°
-          </p>
         </div>
       </div>
     </div>
+    <form @submit.prevent="handleSave" class="w-full flex justify-center mt-10">
+      <div class="w-36">
+        <Button
+          v-if="weatherStore.weather.lat"
+          type="submit"
+          :text="$t('weather.weatherViewer.save')"
+        />
+      </div>
+    </form>
     <pre class="bg-black text-white w-full">
       {{ weatherStore.weather }}
     </pre>

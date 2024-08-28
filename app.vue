@@ -7,7 +7,7 @@
 
 <template>
   <div
-    class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-gradient-to-b from-neutral-50 to-sky-50"
+    class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-gradient-to-b from-neutral-50 to-sky-50 overflow-hidden"
   >
     <div class="bg-sky-900 w-full flex flex-wrap justify-between items-center p-4 md:flex-nowrap">
       <NuxtLink :to="ROUTES.HOME">
