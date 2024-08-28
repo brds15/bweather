@@ -16,6 +16,7 @@ export default defineI18nConfig(() => ({
       },
       titleOne: 'Weather &',
       titleTwo: 'Forecast',
+      nothingToShow: 'Nothing to show',
       weather: {
         weatherViewer: {
           save: 'Save Location'
@@ -35,7 +36,13 @@ export default defineI18nConfig(() => ({
         placeholder: 'Pesquise'
       },
       titleOne: 'Clima &',
-      titleTwo: 'Previsão'
+      titleTwo: 'Previsão',
+      nothingToShow: 'Nada a mostrar',
+      weather: {
+        weatherViewer: {
+          save: 'Salvar Local'
+        }
+      }
     }
   }
 }))
