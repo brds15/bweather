@@ -28,7 +28,12 @@
 </script>
 
 <template>
-  <button class="p-3 border border-gray-400 disabled:bg-red-800" :disabled="props.disabled" :type="props.type" @click="$emit('click')">
+  <button
+    @click="$emit('click')"
+    class="inline-flex w-full justify-center rounded-lg bg-sky-900 px-4 py-3 text-sm font-bold text-white hover:bg-sky-100 hover:text-sky-900"
+    :disabled="props.disabled"
+    :type="props.type"
+  >
     {{ props.text }}
   </button>
 </template>

@@ -10,7 +10,7 @@
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col bg-sky-600">
+  <div class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-sky-600">
     <div class="bg-gray-200 w-full flex justify-between items-center p-4">
       <NuxtLink to="/">
         <NuxtImg

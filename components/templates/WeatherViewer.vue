@@ -9,9 +9,7 @@
 </script>
 
 <template>
-  <div class="border-2 border-gray-200">
-    <h1>WeatherViewer</h1>
-
+  <div>
     <form
       @submit.prevent="
         locationStore.handleSaveLocation({
@@ -27,16 +25,15 @@
         <p class="text-7xl font-extrabold text-white">28°</p>
         <NuxtImg
           v-if="weatherStore.weather.lat"
-          :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
           class="z-10"
           format="webp"
           placeholder="./placeholder.png"
           preload
           quality="80"
+          :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
         />
       </div>
     </div>
-
     <pre class="bg-black text-white w-full">
       {{ weatherStore.weather }}
     </pre>

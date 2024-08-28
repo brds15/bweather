@@ -4,7 +4,7 @@
 
 <template>
   <input
-    class="border border-gray-200 rounded-md px-4 py-2"
+    class="border border-white rounded-lg px-2 py-2"
     :disabled="props.disabled"
     :placeholder="props.placeholder"
     :type="props.type"

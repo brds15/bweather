@@ -10,20 +10,23 @@
 
 <template>
   <div>
-    <form class="flex flex-row items-center gap-2" @submit.prevent="locationStore.loadLocations()">
+    <form
+      class="flex flex-row items-center gap-2 bg-white rounded-lg mt-14"
+      @submit.prevent="locationStore.loadLocations()"
+    >
       <div
         v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
-        class="cursor-pointer"
+        class="cursor-pointer flex items-center pl-2"
         @click="weatherStore.handleWeatherDataWithCoordinatesHistory()"
       >
-        <Icon name="ic:sharp-gps-fixed" size="1.5em" style="color: black" />
+        <Icon name="ic:sharp-gps-fixed" size="1.3em" style="color: #0c4a6e" />
       </div>
       <Input
         placeholder="Search"
         type="text"
         @change="e => locationStore.setLocationToSearch(e.target.value)"
       />
-      <Button type="submit" text="By City" />
+      <Button type="submit" text="For City" />
     </form>
     <ul>
       <li v-for="(item, index) in locationStore.locations" :key="index">
