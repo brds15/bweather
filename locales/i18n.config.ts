@@ -18,7 +18,19 @@ export default defineI18nConfig(() => ({
       titleTwo: 'Forecast',
     },
     pt: {
-      welcome: 'Bienvenue'
+      cityList: {
+        clearHistorical: 'Limpar histórico',
+        historical: 'Histórico',
+        historicalNotFound: 'Sem histórico',
+        saved: 'Favoritos',
+        savedNotFound: 'Sem favoritos'
+      },
+      searchForm: {
+        button: 'Por Cidade',
+        placeholder: 'Pesquise'
+      },
+      titleOne: 'Clima &',
+      titleTwo: 'Previsão',
     }
   }
 }))
