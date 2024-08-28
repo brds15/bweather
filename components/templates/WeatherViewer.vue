@@ -42,9 +42,9 @@
               v-if="weatherStore.weather.lat"
               class="relative z-10 border-4 bottom-[48px] sm:bottom-[72px]"
               format="webp"
-              :placeholder="WEATHER_PLACEHOLDER_SRC"
               preload
               quality="80"
+              :placeholder="WEATHER_PLACEHOLDER_SRC"
               :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
             />
           </div>

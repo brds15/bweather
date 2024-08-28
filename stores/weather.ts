@@ -18,7 +18,7 @@ const useWeatherStore = defineStore({
   },
   getters: {
     weatherDescription: state => {
-      return state.weather.current.weather[0].description
+      return state.weather.current?.weather[0]?.description || ''
     }
   },
   actions: {
@@ -50,7 +50,6 @@ const useWeatherStore = defineStore({
 
       const locationStore = useLocationStore()
       const locationItem = await locationStore.loadLocationsByCoordinates(this.coordinates)
-
 
       if (locationItem) locationStore.saveLocationHistorical(locationItem)
     },
