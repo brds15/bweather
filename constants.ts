@@ -6,5 +6,6 @@ export const LOCALES = [
 ]
 
 export const ROUTES = {
+  HOME: '/',
   WEATHER: '/weather'
 }
