@@ -10,8 +10,8 @@
 </script>
 
 <template>
-  <div class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-sky-600">
-    <div class="bg-gray-200 w-full flex justify-between items-center p-4">
+  <div class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-gradient-to-b from-neutral-50 to-sky-50">
+    <div class="bg-sky-900 w-full flex justify-between items-center p-4">
       <NuxtLink to="/">
         <NuxtImg
           format="webp"
@@ -40,10 +40,10 @@
         </Dropdown>
         <ul class="flex flex-row flex-wrap gap-5">
           <li>
-            <button @click="setLocale('en')">english</button>
+            <button class="text-white" @click="setLocale('en')">english</button>
           </li>
           <li>
-            <button @click="setLocale('fr')">french</button>
+            <button class="text-white" @click="setLocale('fr')">french</button>
           </li>
         </ul>
       </div>

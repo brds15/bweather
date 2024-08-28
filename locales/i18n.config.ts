@@ -3,7 +3,8 @@ export default defineI18nConfig(() => ({
   locale: 'en',
   messages: {
     en: {
-      welcome: 'Welcome'
+      title_one: 'Weather &',
+      title_two: 'Forecast',
     },
     fr: {
       welcome: 'Bienvenue'
