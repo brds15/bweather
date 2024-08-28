@@ -2,6 +2,7 @@
   import useWeatherStore from '~/stores/weather'
   import useLocationStore from '~/stores/location'
   import Button from '~/components/atoms/Button.vue'
+  import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
 
   const runtimeConfig = useRuntimeConfig()
   const weatherStore = useWeatherStore()
@@ -27,7 +28,7 @@
           v-if="weatherStore.weather.lat"
           class="z-10"
           format="webp"
-          placeholder="./placeholder.png"
+          :placeholder="WEATHER_PLACEHOLDER_SRC"
           preload
           quality="80"
           :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"

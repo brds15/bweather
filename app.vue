@@ -20,7 +20,7 @@
         />
       </NuxtLink>
       <div
-        class="w-full flex items-center justify-center gap-5 mt-4 md:w-auto md:mt-0 md:justify-end"
+        class="w-full flex flex-row-reverse items-center justify-center gap-5 mt-4 md:w-auto md:mt-0 md:justify-end md:flex-row"
       >
         <CityList />
         <ul class="flex flex-row flex-wrap gap-5">

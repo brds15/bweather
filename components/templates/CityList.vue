@@ -8,6 +8,7 @@
 </script>
 
 <template>
+  <div class="flex gap-5 items-center">
   <Dropdown :text="$t('cityList.saved')">
     <span v-if="locationStore.locationsSaved.length === 0">
       {{ $t('cityList.savedNotFound') }}
@@ -56,4 +57,5 @@
       {{ $t('cityList.clearHistorical') }}
     </span>
   </Dropdown>
+  </div>
 </template>
