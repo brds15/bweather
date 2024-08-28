@@ -3,25 +3,9 @@
   import useLocationStore from '~/stores/location'
   import Button from '~/components/atoms/Button.vue'
   import Input from '~/components/atoms/Input.vue'
-  import { ROUTES } from '~/constants'
-  import type { LocationItem } from '~/types/location'
 
   const weatherStore = useWeatherStore()
   const locationStore = useLocationStore()
-
-  async function navigateToWeather() {
-    await navigateTo(ROUTES.WEATHER)
-  }
-
-  async function handleCurrentPosition() {
-    await weatherStore.handleWeatherDataWithCoordinatesHistorical()
-    await navigateToWeather()
-  }
-
-  async function handleSelectedPosition(locationItem: LocationItem) {
-    await locationStore.handleLocationSearch(locationItem)
-    await navigateToWeather()
-  }
 </script>
 
 <template>
@@ -33,7 +17,7 @@
       <div
         v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
         class="cursor-pointer flex items-center pl-2"
-        @click="handleCurrentPosition"
+        @click="weatherStore.handleCurrentPosition"
       >
         <Icon name="ic:sharp-gps-fixed" size="1.3em" class="text-sky-900" />
       </div>
@@ -49,7 +33,7 @@
       <li v-for="(item, index) in locationStore.locations" :key="index">
         <div
           class="flex flex-row items-center cursor-pointer my-2 gap-2 overflow-auto rounded-lg p-2 hover:bg-sky-100"
-          @click="handleSelectedPosition(item)"
+          @click="locationStore.handleSelectedPosition(item)"
         >
           <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
           <span>{{ item.location }}</span>

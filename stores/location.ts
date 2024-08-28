@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import useWeatherStore from '~/stores/weather'
+import { navigateToWeather } from '~/utils/navigate'
 import type { LocationItem, LocationsItems } from '~/types/location'
 import type { Coordinates } from '~/types/weather'
 
@@ -80,6 +81,10 @@ const useLocationStore = defineStore('location', {
       } catch (e) {
         console.error('error::', e)
       }
+    },
+    async handleSelectedPosition(locationItem: LocationItem) {
+      await this.handleLocationSearch(locationItem)
+      await navigateToWeather()
     }
   }
 })

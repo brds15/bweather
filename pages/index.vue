@@ -21,7 +21,10 @@
 <template>
   <div class="w-full h-auto flex flex-col items-center justify-around p-6">
     <section class="mt-12">
-      <h1 class="text-6xl font-semibold text-sky-900 leading-9 z-10 md:text-8xl" data-testid="title">
+      <h1
+        class="text-6xl font-semibold text-sky-900 leading-9 z-10 md:text-8xl"
+        data-testid="title"
+      >
         {{ $t('titleOne') }}
       </h1>
       <h2 class="text-6xl font-semibold text-sky-900 leading-9 z-0 md:text-8xl">

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
-import type { Coordinates, WeatherData } from '~/types/weather'
 import useLocationStore from '~/stores/location'
+import { navigateToWeather } from '~/utils/navigate'
+import type { Coordinates, WeatherData } from '~/types/weather'
 import type { LocationItem } from '~/types/location'
 
 const WEATHER_API_URL = '/api/weather/general/'
@@ -34,16 +35,24 @@ const useWeatherStore = defineStore({
 
       this.setCoordinates(locationItem.coordinates)
 
-      this.loadWeatherData()
+      await this.loadWeatherData()
     },
     async handleWeatherDataWithCoordinatesHistorical() {
-      this.loadWeatherData()
+      await this.loadWeatherData()
 
       const locationStore = useLocationStore()
       const locationItem = await locationStore.loadLocationsByCoordinates(this.coordinates)
 
 
       if (locationItem) locationStore.saveLocationHistorical(locationItem)
+    },
+    async handleCurrentPosition() {
+      await this.handleWeatherDataWithCoordinatesHistorical()
+      await navigateToWeather()
+    },
+    async handleListPosition(locationItem: LocationItem) {
+      await this.handleWeatherDataWithHistorical(locationItem)
+      await navigateToWeather()
     }
   }
 })

@@ -20,7 +20,7 @@
     >
       <span
         class="w-full cursor-pointer flex items-center gap-2"
-        @click="weatherStore.handleWeatherDataWithHistorical(item)"
+        @click="weatherStore.handleListPosition(item)"
       >
         <Icon :name="`flagpack:${item.country}`" size="1.4em" />
         {{ item.location }}
@@ -37,12 +37,12 @@
     <div
       v-else
       v-for="(item, index) in locationStore.locationsHistorical"
-      class="w-full"
+      class="w-full my-1"
       :key="index"
     >
       <span
         class="w-full cursor-pointer flex items-center gap-2"
-        @click="weatherStore.handleWeatherDataWithHistorical(item)"
+        @click="weatherStore.handleListPosition(item)"
       >
         <Icon :name="`flagpack:${item.country}`" size="1.4em" />
         {{ item.location }}
