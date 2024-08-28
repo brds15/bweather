@@ -34,6 +34,10 @@ const useLocationStore = defineStore('location', {
       this.locationsHistory = []
     },
     handleLocationSearch(locationItem: LocationItem) {
+      if (!locationItem) {
+        return
+      }
+
       const weatherStore = useWeatherStore()
 
       weatherStore
