@@ -8,7 +8,7 @@ export default defineI18nConfig(() => ({
         historical: 'Historical',
         historicalNotFound: 'Is not there historical',
         saved: 'Saved',
-        savedNotFound: 'Is not there saved'
+        savedNotFound: 'Is there not saved'
       },
       searchForm: {
         button: 'For City',
