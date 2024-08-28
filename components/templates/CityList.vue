@@ -8,34 +8,52 @@
 </script>
 
 <template>
-  <Dropdown text="Favorites">
+  <Dropdown :text="$t('cityList.saved')">
+    <span v-if="locationStore.locationsSaved.length === 0">
+      {{ $t('cityList.savedNotFound') }}
+    </span>
     <div
-      class="w-full flex items-center justify-around flex-nowrap"
+      v-else
       v-for="(item, index) in locationStore.locationsSaved"
+      class="w-full flex items-center justify-around flex-nowrap"
       :key="index"
     >
-      <span class="cursor-pointer" @click="weatherStore.handleWeatherDataWithHistory(item)">
-        <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+      <span
+        class="w-full cursor-pointer flex items-center gap-2"
+        @click="weatherStore.handleWeatherDataWithHistorical(item)"
+      >
+        <Icon :name="`flagpack:${item.country}`" size="1.4em" />
         {{ item.location }}
       </span>
       <div class="cursor-pointer" @click="locationStore.removeSaveLocation(item)">
-        <Icon name="ic:baseline-delete-outline" size="1.5em" style="color: black" />
+        <Icon name="ic:baseline-delete-outline" size="1.5em" />
       </div>
     </div>
   </Dropdown>
-  <Dropdown text="History">
-    <div class="w-full" v-for="(item, index) in locationStore.locationsHistory" :key="index">
-            <span class="cursor-pointer" @click="weatherStore.handleWeatherDataWithHistory(item)">
-              <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
-              {{ item.location }}
-            </span>
+  <Dropdown :text="$t('cityList.historical')">
+    <span v-if="locationStore.locationsHistorical.length === 0">
+      {{ $t('cityList.historicalNotFound') }}
+    </span>
+    <div
+      v-else
+      v-for="(item, index) in locationStore.locationsHistorical"
+      class="w-full"
+      :key="index"
+    >
+      <span
+        class="w-full cursor-pointer flex items-center gap-2"
+        @click="weatherStore.handleWeatherDataWithHistorical(item)"
+      >
+        <Icon :name="`flagpack:${item.country}`" size="1.4em" />
+        {{ item.location }}
+      </span>
     </div>
     <span
-      v-if="locationStore.locationsHistory.length > 0"
-      @click="locationStore.resetLocationHistory"
-      class="cursor-pointer"
+      v-if="locationStore.locationsHistorical.length > 0"
+      @click="locationStore.resetLocationHistorical"
+      class="cursor-pointer mt-3 text-yellow-600"
     >
-            Clear history
-          </span>
+      {{ $t('cityList.clearHistorical') }}
+    </span>
   </Dropdown>
 </template>

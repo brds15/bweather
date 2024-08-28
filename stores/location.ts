@@ -7,7 +7,7 @@ const useLocationStore = defineStore('location', {
   state: () => ({
     locations: [] as LocationsItems,
     locationToSearch: '' as string,
-    locationsHistory: [] as LocationsItems,
+    locationsHistorical: [] as LocationsItems,
     locationsSaved: [] as LocationsItems
   }),
   persist: {
@@ -20,8 +20,8 @@ const useLocationStore = defineStore('location', {
     setLocationToSearch(newValue: string) {
       this.locationToSearch = newValue
     },
-    setLocationHistory(locationItem: LocationItem) {
-      this.locationsHistory.push(locationItem)
+    setLocationHistorical(locationItem: LocationItem) {
+      this.locationsHistorical.push(locationItem)
     },
     setLocationSaved(locationItem: LocationItem) {
       this.locationsSaved.push(locationItem)
@@ -30,8 +30,8 @@ const useLocationStore = defineStore('location', {
       this.setLocationToSearch('')
       this.setLocations([])
     },
-    resetLocationHistory() {
-      this.locationsHistory = []
+    resetLocationHistorical() {
+      this.locationsHistorical = []
     },
     async handleLocationSearch(locationItem: LocationItem) {
       if (!locationItem) {
@@ -41,11 +41,11 @@ const useLocationStore = defineStore('location', {
       const weatherStore = useWeatherStore()
 
       weatherStore
-        .handleWeatherDataWithHistory(locationItem)
+        .handleWeatherDataWithHistorical(locationItem)
         .finally(() => this.handleResetLocation())
     },
-    saveLocationHistory(locationItem: LocationItem) {
-      this.setLocationHistory(locationItem)
+    saveLocationHistorical(locationItem: LocationItem) {
+      this.setLocationHistorical(locationItem)
     },
     removeSaveLocation(locationItem: LocationItem) {
       const { coordinates } = locationItem

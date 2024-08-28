@@ -14,7 +14,7 @@
   }
 
   async function handleCurrentPosition() {
-    await weatherStore.handleWeatherDataWithCoordinatesHistory()
+    await weatherStore.handleWeatherDataWithCoordinatesHistorical()
     await navigateToWeather()
   }
 

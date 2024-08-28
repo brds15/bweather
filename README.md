@@ -6,7 +6,7 @@ Application for checking weather.
 
 - Search weather by city, by current localization or typed
 - Show weather information
-- Show the history of searching
+- Show the historical of searching
 - Show the favorites
 
 # Characters

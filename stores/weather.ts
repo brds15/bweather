@@ -27,23 +27,23 @@ const useWeatherStore = defineStore({
         .then(response => this.setWeather(response))
         .catch(e => console.error('error::', e))
     },
-    async handleWeatherDataWithHistory(locationItem: LocationItem) {
+    async handleWeatherDataWithHistorical(locationItem: LocationItem) {
       const locationStore = useLocationStore()
 
-      locationStore.setLocationHistory(locationItem)
+      locationStore.setLocationHistorical(locationItem)
 
       this.setCoordinates(locationItem.coordinates)
 
       this.loadWeatherData()
     },
-    async handleWeatherDataWithCoordinatesHistory() {
+    async handleWeatherDataWithCoordinatesHistorical() {
       this.loadWeatherData()
 
       const locationStore = useLocationStore()
       const locationItem = await locationStore.loadLocationsByCoordinates(this.coordinates)
 
 
-      if (locationItem) locationStore.saveLocationHistory(locationItem)
+      if (locationItem) locationStore.saveLocationHistorical(locationItem)
     }
   }
 })
