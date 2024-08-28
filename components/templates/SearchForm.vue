@@ -24,14 +24,14 @@
         class="cursor-pointer flex items-center pl-2"
         @click="handleCurrentPosition"
       >
-        <Icon name="ic:sharp-gps-fixed" size="1.3em" style="color: #0c4a6e" />
+        <Icon name="ic:sharp-gps-fixed" size="1.3em" class="text-sky-900" />
       </div>
       <Input
-        placeholder="Search"
+        :placeholder="$t('searchForm.placeholder')"
         type="text"
         @change="e => locationStore.setLocationToSearch(e.target.value)"
       />
-      <Button type="submit" text="For City" />
+      <Button type="submit" :text="$t('searchForm.button')" />
     </form>
     <ul>
       <li v-for="(item, index) in locationStore.locations" :key="index">
