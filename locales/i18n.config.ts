@@ -10,7 +10,7 @@ export default defineI18nConfig(() => ({
         placeholder: 'Search'
       }
     },
-    fr: {
+    pt: {
       welcome: 'Bienvenue'
     }
   }

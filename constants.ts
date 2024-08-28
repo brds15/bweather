@@ -1,5 +1,6 @@
-export const WEATHER_BASE_URL = '/api/weather'
+export const LOGO_SRC = './logo.webp'
 
-export const WEATHER_ENDPOINTS = {
-  GENERAL: 'general'
-}
+export const LOCALES = [
+  { abbreviation: 'en', language: 'English' },
+  { abbreviation: 'pt', language: 'Portuguese' }
+]

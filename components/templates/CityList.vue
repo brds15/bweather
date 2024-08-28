@@ -23,4 +23,19 @@
       </div>
     </div>
   </Dropdown>
+  <Dropdown text="History">
+    <div class="w-full" v-for="(item, index) in locationStore.locationsHistory" :key="index">
+            <span class="cursor-pointer" @click="weatherStore.handleWeatherDataWithHistory(item)">
+              <Icon :name="`flagpack:${item.country}`" size="1.4em" style="color: black" />
+              {{ item.location }}
+            </span>
+    </div>
+    <span
+      v-if="locationStore.locationsHistory.length > 0"
+      @click="locationStore.resetLocationHistory"
+      class="cursor-pointer"
+    >
+            Clear history
+          </span>
+  </Dropdown>
 </template>
