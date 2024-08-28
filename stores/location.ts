@@ -14,6 +14,11 @@ const useLocationStore = defineStore('location', {
   persist: {
     storage: persistedState.localStorage
   },
+  getters: {
+    lastLocationName: state => {
+      return state.locationsHistorical[state.locationsHistorical.length - 1].name
+    }
+  },
   actions: {
     setLocations(newValue: LocationsItems) {
       this.locations = newValue

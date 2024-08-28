@@ -13,6 +13,14 @@ const useWeatherStore = defineStore({
     coordinates: { latitude: undefined, longitude: undefined } as Coordinates,
     weather: {} as WeatherData
   }),
+  persist: {
+    storage: persistedState.localStorage
+  },
+  getters: {
+    weatherDescription: state => {
+      return state.weather.current.weather[0].description
+    }
+  },
   actions: {
     setWeather(newWeather: WeatherData) {
       this.weather = newWeather
