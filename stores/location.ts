@@ -33,7 +33,7 @@ const useLocationStore = defineStore('location', {
     resetLocationHistory() {
       this.locationsHistory = []
     },
-    handleLocationSearch(locationItem: LocationItem) {
+    async handleLocationSearch(locationItem: LocationItem) {
       if (!locationItem) {
         return
       }
