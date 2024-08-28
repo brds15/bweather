@@ -27,7 +27,7 @@
 <template>
   <div>
     <form
-      class="flex flex-row items-center gap-2 bg-white rounded-lg mt-14"
+      class="flex flex-row flex-wrap items-center gap-2 bg-white rounded-lg mt-14 sm:flex-nowrap"
       @submit.prevent="locationStore.loadLocations()"
     >
       <div
@@ -39,6 +39,7 @@
       </div>
       <Input
         :placeholder="$t('searchForm.placeholder')"
+        class="flex-1"
         type="text"
         @change="e => locationStore.setLocationToSearch(e.target.value)"
       />

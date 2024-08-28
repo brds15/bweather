@@ -9,7 +9,7 @@
   <div
     class="h-full w-full scroll-smooth flex flex-col min-h-screen bg-gradient-to-b from-neutral-50 to-sky-50"
   >
-    <div class="bg-sky-900 w-full flex justify-between items-center p-4">
+    <div class="bg-sky-900 w-full flex flex-wrap justify-between items-center p-4 md:flex-nowrap">
       <NuxtLink to="/">
         <NuxtImg
           format="webp"
@@ -19,7 +19,7 @@
           :src="LOGO_SRC"
         />
       </NuxtLink>
-      <div class="flex items-center gap-5">
+      <div class="w-full flex items-center justify-center gap-5 mt-4 md:w-auto md:mt-0 md:justify-end">
         <CityList />
         <ul class="flex flex-row flex-wrap gap-5">
           <li v-for="(locale, index) in LOCALES" :key="index">
