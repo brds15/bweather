@@ -16,7 +16,11 @@ const useLocationStore = defineStore('location', {
   },
   getters: {
     lastLocationName: state => {
-      return state.locationsHistorical[state.locationsHistorical.length - 1].name
+      if (state.locationsHistorical.length > 0) {
+        return state.locationsHistorical[state.locationsHistorical.length - 1].name
+      }
+
+      return ''
     }
   },
   actions: {
