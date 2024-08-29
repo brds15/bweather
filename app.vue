@@ -12,9 +12,8 @@
     <div class="bg-sky-900 w-full flex flex-wrap justify-between items-center p-4 md:flex-nowrap">
       <NuxtLink :to="ROUTES.HOME">
         <NuxtImg
-          format="webp"
           preload
-          quality="60"
+          quality="50"
           sizes="100vw sm:50vw md:200px"
           :src="LOGO_SRC"
         />

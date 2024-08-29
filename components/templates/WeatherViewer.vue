@@ -2,11 +2,48 @@
   import useWeatherStore from '~/stores/weather'
   import useLocationStore from '~/stores/location'
   import Button from '~/components/atoms/Button.vue'
+  import InfoLabel from '~/components/molecules/InfoLabel.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
 
   const runtimeConfig = useRuntimeConfig()
+  const { t } = useI18n()
   const weatherStore = useWeatherStore()
   const locationStore = useLocationStore()
+
+  const currentInfo = computed(() => {
+    const prefix = 'weather.weatherViewer'
+
+    return [
+      {
+        text: weatherStore.weatherCurrent?.feelsLike,
+        title: t(`${prefix}.feelsLike`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.humidity,
+        title: t(`${prefix}.humidity`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.pressure,
+        title: t(`${prefix}.pressure`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.visibility,
+        title: t(`${prefix}.visibility`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.windSpeed,
+        title: t(`${prefix}.windSpeed`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.uvi,
+        title: t(`${prefix}.uvi`)
+      },
+      {
+        text: weatherStore.weatherCurrent?.clouds,
+        title: t(`${prefix}.clouds`)
+      }
+    ]
+  })
 
   function handleSave() {
     locationStore.handleSaveLocation({
@@ -18,14 +55,20 @@
 
 <template>
   <div class="w-full h-auto p-6">
-    <div
-      v-if="weatherStore.weather.lat"
-      class="w-full flex flex-col items-center justify-between"
-    >
+    <div v-if="weatherStore.weather.lat" class="w-full flex flex-col items-center justify-between">
       <div
-        class="w-full flex flex-col items-center gap-5 mt-14 md:flex-row md:justify-around md:items-start"
+        class="w-full flex flex-col-reverse items-center gap-5 mt-14 md:flex-row md:justify-around md:items-start"
       >
-        <div class="flex-1 border-2"></div>
+        <div class="flex-1">
+          <div class="flex items-center justify-center flex-wrap gap-8 md:justify-start">
+            <InfoLabel
+              v-for="(item, index) in currentInfo"
+              :key="index"
+              :text="item.text"
+              :title="item.title"
+            />
+          </div>
+        </div>
         <div
           class="w-[366px] h-[400px] flex-col justify-between items-center bg-sky-700 overflow-hidden rounded-lg p-8"
         >
@@ -34,15 +77,15 @@
               <h4 class="text-3xl text-white">
                 {{ locationStore.lastLocationName }}
               </h4>
-              <span class="font-light text-gray-300 text-sm capitalize">
+              <span class="font-light text-gray-300 text-sm capitalize md:text-base">
                 {{ weatherStore.weatherDescription }}
               </span>
             </div>
             <div class="w-full relative mt-4 flex flex-col justify-center">
               <span
-                class="relative top-[40px] left-[10px] text-5xl font-extrabold text-white text-center z-0 sm:text-7xl sm:top-[23px] sm:left-[13px]"
+                class="relative top-[40px] left-[10px] text-5xl font-extrabold text-white text-center z-0 sm:text-7xl sm:top-[26px] sm:left-[13px]"
               >
-                28°
+                {{ weatherStore.weatherCurrent?.temp }}
               </span>
               <NuxtImg
                 v-if="weatherStore.weather.lat"
