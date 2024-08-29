@@ -116,7 +116,7 @@
             </div>
             <div class="w-full relative mt-4 flex flex-col justify-center">
               <span
-                class="relative top-[40px] left-[10px] text-5xl font-extrabold text-white text-center z-0 sm:text-7xl sm:top-[26px] sm:left-[13px]"
+                class="relative top-0 left-[10px] text-5xl font-extrabold text-white text-center z-0 sm:text-7xl sm:top-0 sm:left-[13px]"
               >
                 {{ weatherStore.weatherCurrent?.temp }}
               </span>
