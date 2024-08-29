@@ -1,4 +1,10 @@
-import { CurrentWeather, TransformedCurrentWeather, Weather, WeatherData } from '~/types/weather'
+import {
+  CurrentWeather,
+  TransformedCurrentWeather,
+  TransformedWeatherData,
+  Weather,
+  WeatherData
+} from '~/types/weather'
 
 function transformWeather(weather: Weather) {
   return {
@@ -23,7 +29,7 @@ function transformCurrent(current: CurrentWeather): TransformedCurrentWeather {
   }
 }
 
-function transformerGeneralData(weatherData: WeatherData) {
+function transformerGeneralData(weatherData: WeatherData): TransformedWeatherData {
   return {
     current: transformCurrent(weatherData.current),
     daily: weatherData.daily,
