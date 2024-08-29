@@ -205,6 +205,5 @@
         {{ $t('nothingToShow') }}
       </h4>
     </div>
-
   </div>
 </template>
