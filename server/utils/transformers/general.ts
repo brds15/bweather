@@ -46,7 +46,7 @@ function transformerGeneralData(weatherData: WeatherData): TransformedWeatherDat
   return {
     current: transformCurrent(weatherData.current),
     daily: weatherData.daily,
-    hourly: transformHourly(weatherData.hourly).slice(0, 5),
+    hourly: transformHourly(weatherData.hourly).slice(1, 6),
     lat: weatherData.lat,
     lon: weatherData.lon,
     timezone: weatherData.timezone,
