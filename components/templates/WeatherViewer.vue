@@ -4,7 +4,6 @@
   import Button from '~/components/atoms/Button.vue'
   import InfoLabel from '~/components/molecules/InfoLabel.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
-  import { DateTime } from 'luxon'
 
   const runtimeConfig = useRuntimeConfig()
   const { t } = useI18n()
@@ -46,12 +45,6 @@
     ]
   })
 
-  function timestampToDate(timestamp: number) {
-    const dateTime = DateTime.fromSeconds(timestamp)
-
-    return dateTime.toLocaleString(DateTime.DATETIME_FULL)
-  }
-
   function handleSave() {
     locationStore.handleSaveLocation({
       latitude: weatherStore.weather.lat,
@@ -75,17 +68,35 @@
               :title="item.title"
             />
           </div>
-          <div class="w-full flex flex-col gap-8 mt-8">
-            <h4 class="text-3xl font-bold text-yellow-600">Today</h4>
-            <div class="">
-              <span>
-                {{ timestampToDate(weatherStore.hourlyWeather[0].dt) }}
-              </span>
+          <h4 class="text-3xl font-bold text-yellow-600 mt-8 mb-4">
+            {{ $t('weather.weatherViewer.nextHours') }}
+          </h4>
+          <div class="w-full flex flex-row flex-wrap gap-2">
+            <div
+              v-for="(item, index) in weatherStore.hourlyWeather"
+              :key="index"
+              class="w-36 flex flex-col bg-sky-700 rounded-lg overflow-hidden"
+            >
+              <NuxtImg
+                format="webp"
+                preload
+                quality="80"
+                :placeholder="WEATHER_PLACEHOLDER_SRC"
+                :src="`${runtimeConfig.public.imageBase}/${item.icon}@2x.png`"
+              />
+              <div class="flex flex-col items-center justify-between px-8 pb-8">
+                <span class="font-light text-gray-300 text-base">
+                  {{ item.dt }}
+                </span>
+                <span class="text-white font-bold text-xl">
+                  {{ item.temp }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
         <div
-          class="w-[366px] h-[400px] flex-col justify-between items-center bg-sky-700 overflow-hidden rounded-lg p-8"
+          class="w-[366px] h-[375px] flex-col justify-between items-center bg-sky-700 overflow-hidden rounded-lg p-8"
         >
           <div class="w-full flex-col justify-between items-center">
             <div class="flex flex-col justify-center items-center leading-3">

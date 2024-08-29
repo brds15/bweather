@@ -39,7 +39,7 @@ export interface TransformedCurrentWeather {
   windSpeed: string
 }
 
-interface HourlyWeather extends CurrentWeather {
+export interface HourlyWeather extends CurrentWeather {
   pop: number
   windGust?: number
 }
@@ -92,10 +92,16 @@ export interface WeatherData {
   timezoneOffset: number
 }
 
+export interface TranformedHourlyWeather {
+  dt: string,
+  icon: string,
+  temp: string
+}
+
 export interface TransformedWeatherData {
   current: TransformedCurrentWeather
   daily: DailyWeather[]
-  hourly: HourlyWeather[]
+  hourly: TranformedHourlyWeather[]
   lat: number
   lon: number
   timezone: string

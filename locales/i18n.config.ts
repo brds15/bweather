@@ -19,14 +19,15 @@ export default defineI18nConfig(() => ({
       nothingToShow: 'Nothing to show',
       weather: {
         weatherViewer: {
-          humidity: 'Humidity',
           clouds: 'Clouds',
           feelsLike: 'Feels like',
+          humidity: 'Humidity',
+          nextHours: 'Next Hours',
           pressure: 'Pressure',
+          save: 'Save Location',
+          uvi: 'Uvi',
           visibility: 'Visibility',
           windSpeed: 'Wind speed',
-          uvi: 'Uvi',
-          save: 'Save Location'
         }
       }
     },
