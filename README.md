@@ -81,9 +81,8 @@ With this, data transformers were created, so that only the necessary fields are
 
 To use the cache, I initially thought of using the unstore, but I realised that it wouldn't have any advantages on the frontend side. So I opted to use ‘pinia-plugin-persistedstate’ because of its ease, integration with the store and also with Nuxt3.
 
-Translated with DeepL.com (free version)
-
 ![system-design](screenshots/system-design.png)
+System design
 
 ## Production
 
