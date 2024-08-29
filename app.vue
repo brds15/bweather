@@ -3,6 +3,14 @@
   import { LOCALES, LOGO_SRC, ROUTES } from '~/constants'
 
   const { setLocale } = useI18n()
+
+  useHead({
+    title: 'BWeather | Anytime Weather Status',
+    meta: [
+      { name: 'Forecast', content: 'Forecast now' },
+      { name: 'Weather', content: 'Weather now' }
+    ]
+  })
 </script>
 
 <template>
@@ -11,12 +19,7 @@
   >
     <div class="bg-sky-900 w-full flex flex-wrap justify-between items-center p-4 md:flex-nowrap">
       <NuxtLink :to="ROUTES.HOME">
-        <NuxtImg
-          preload
-          quality="50"
-          sizes="100vw sm:50vw md:200px"
-          :src="LOGO_SRC"
-        />
+        <NuxtImg preload quality="50" sizes="100vw sm:50vw md:200px" :src="LOGO_SRC" />
       </NuxtLink>
       <div
         class="w-full flex flex-row-reverse items-center justify-center gap-5 mt-4 md:w-auto md:mt-0 md:justify-end md:flex-row"

@@ -22,6 +22,12 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/image'
   ],
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1'
+    }
+  },
   i18n: {
     vueI18n: './locales/i18n.config.ts'
   },
