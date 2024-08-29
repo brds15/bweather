@@ -21,7 +21,7 @@ const useWeatherStore = defineStore({
       return state.weather.current
     },
     weatherDescription: state => {
-      return state.weather.current?.weather[0]?.description || ''
+      return state.weather.current?.weather?.description || ''
     }
   },
   actions: {

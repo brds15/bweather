@@ -94,7 +94,7 @@
                 preload
                 quality="80"
                 :placeholder="WEATHER_PLACEHOLDER_SRC"
-                :src="`${runtimeConfig.public.imageBase}/${weatherStore.weather.current.weather[0].icon}@4x.png`"
+                :src="`${runtimeConfig.public.imageBase}/${weatherStore.weatherCurrent.weather.icon}@4x.png`"
               />
             </div>
           </div>

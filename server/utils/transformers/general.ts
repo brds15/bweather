@@ -1,14 +1,12 @@
 import { CurrentWeather, TransformedCurrentWeather, Weather, WeatherData } from '~/types/weather'
 
 function transformWeather(weather: Weather) {
-  return [
-    {
-      description: weather.description,
-      icon: weather.icon,
-      id: weather.id,
-      main: weather.main
-    }
-  ]
+  return {
+    description: weather.description,
+    icon: weather.icon,
+    id: weather.id,
+    main: weather.main
+  }
 }
 
 function transformCurrent(current: CurrentWeather): TransformedCurrentWeather {

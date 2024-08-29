@@ -35,7 +35,7 @@ export interface TransformedCurrentWeather {
   temp: string
   uvi: number
   visibility: number
-  weather: Weather[]
+  weather: Weather
   windSpeed: string
 }
 
