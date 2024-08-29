@@ -39,8 +39,14 @@ const useLocationStore = defineStore('location', {
     setLocations(newValue: LocationsItems) {
       this.locations = newValue
     },
+    resetLocations() {
+      this.locations = []
+    },
     setLocationToSearch(newValue: string) {
       this.locationToSearch = newValue
+    },
+    resetLocationToSearch() {
+      this.setLocationToSearch('')
     },
     setLocationHistorical(locationItem: LocationItem) {
       if (this.locationsHistorical.length === HISTORICAL_LIMIT) {
@@ -57,7 +63,7 @@ const useLocationStore = defineStore('location', {
       this.locationsSaved.push(locationItem)
     },
     handleResetLocation() {
-      this.setLocationToSearch('')
+      this.resetLocationToSearch()
       this.setLocations([])
     },
     resetLocationHistorical() {
@@ -118,7 +124,10 @@ const useLocationStore = defineStore('location', {
 
         $fetch(`/api/weather/location/${this.locationToSearch}`)
           .then(response => this.setLocations(response))
-          .catch(e => console.error('error::', e))
+          .catch(e => {
+            console.error('error::', e)
+            this.resetLocations()
+          })
           .finally(() => this.setIsLoading(false))
       }
     },

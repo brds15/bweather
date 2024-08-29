@@ -12,7 +12,6 @@
 <template>
   <div>
     <form
-      v-if="!locationStore.isLoading"
       class="flex flex-row flex-wrap items-center gap-2 bg-white rounded-lg mt-14 sm:flex-nowrap"
       data-testid="search-form"
       @submit.prevent="locationStore.loadLocations()"
@@ -38,7 +37,7 @@
       />
       <Button data-testid="search-form-button" type="submit" :text="$t('searchForm.button')" />
     </form>
-    <div class="mt-14" v-else>
+    <div class="mt-4" v-if="locationStore.isLoading">
       <Skeleton height="210px" width="300px" />
     </div>
     <ul
