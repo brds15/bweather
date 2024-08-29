@@ -1,9 +1,13 @@
 import { DateTime } from 'luxon'
 
-function timestampToHour(timestamp: number): string {
+export function timestampToHour(timestamp: number): string {
   const dateTime = DateTime.fromSeconds(timestamp)
 
   return dateTime.toLocaleString(DateTime.TIME_24_SIMPLE)
 }
 
-export default timestampToHour
+export function timestampToDate(timestamp: number): string {
+  const dateTime = DateTime.fromSeconds(timestamp)
+
+  return dateTime.toFormat('DD/MM');
+}

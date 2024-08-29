@@ -1,13 +1,15 @@
 import {
   CurrentWeather,
+  DailyWeather,
   HourlyWeather,
   TranformedHourlyWeather,
   TransformedCurrentWeather,
+  TransformedDailyWeather,
   TransformedWeatherData,
   Weather,
   WeatherData
 } from '~/types/weather'
-import timestampToHour from '~/server/utils/dataTime'
+import { timestampToDate, timestampToHour } from '~/server/utils/dataTime'
 
 function transformWeather(weather: Weather) {
   return {
@@ -42,10 +44,22 @@ function transformHourly(hourlyItems: HourlyWeather[]): TranformedHourlyWeather[
   })
 }
 
+function transformDaily(dailyItems: DailyWeather[]): TransformedDailyWeather[] {
+  return dailyItems.map(item => {
+    return {
+      dt: timestampToDate(item.dt),
+      icon: item.weather[0].icon,
+      max: `${Math.round(item.temp.max)}°`,
+      min: `${Math.round(item.temp.min)}°`,
+      windSpeed: `${item.windSpeed}mph`
+    }
+  })
+}
+
 function transformerGeneralData(weatherData: WeatherData): TransformedWeatherData {
   return {
     current: transformCurrent(weatherData.current),
-    daily: weatherData.daily,
+    daily: transformDaily(weatherData.daily).slice(1, 4),
     hourly: transformHourly(weatherData.hourly).slice(1, 6),
     lat: weatherData.lat,
     lon: weatherData.lon,

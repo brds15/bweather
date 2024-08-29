@@ -3,6 +3,7 @@
   import useLocationStore from '~/stores/location'
   import Button from '~/components/atoms/Button.vue'
   import InfoLabel from '~/components/molecules/InfoLabel.vue'
+  import Title from '~/components/atoms/Title.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
 
   const runtimeConfig = useRuntimeConfig()
@@ -68,14 +69,12 @@
               :title="item.title"
             />
           </div>
-          <h4 class="text-3xl font-bold text-yellow-600 mt-8 mb-4">
-            {{ $t('weather.weatherViewer.nextHours') }}
-          </h4>
+          <Title :text="$t('weather.weatherViewer.nextHours')" />
           <div class="w-full flex flex-row flex-wrap gap-2">
             <div
               v-for="(item, index) in weatherStore.hourlyWeather"
-              :key="index"
               class="w-36 flex flex-col bg-sky-700 rounded-lg overflow-hidden"
+              :key="index"
             >
               <NuxtImg
                 format="webp"
@@ -96,7 +95,7 @@
           </div>
         </div>
         <div
-          class="w-[366px] h-[375px] flex-col justify-between items-center bg-sky-700 overflow-hidden rounded-lg p-8"
+          class="w-[366px] h-[364px] flex-col justify-between items-center bg-sky-700 overflow-hidden rounded-lg p-8"
         >
           <div class="w-full flex-col justify-between items-center">
             <div class="flex flex-col justify-center items-center leading-3">
@@ -126,6 +125,56 @@
           </div>
         </div>
       </div>
+      <Title :text="$t('weather.weatherViewer.nextDays')" />
+      <div class="w-full flex flex-col flex-wrap gap-2">
+        <div
+          v-for="(item, index) in weatherStore.dailyWeather"
+          class="w-full flex flex-wrap bg-sky-700 rounded-lg justify-between overflow-hidden py-4 px-8"
+          :key="index"
+        >
+          <div class="flex flex-col justify-center items-start">
+            <span class="font-light text-gray-300 text-base">
+              {{ $t('weather.weatherViewer.date') }}
+            </span>
+            <span class="text-white font-bold text-xl">
+              {{ item.dt }}
+            </span>
+          </div>
+          <div class="flex flex-col justify-center items-start">
+            <NuxtImg
+              format="webp"
+              preload
+              quality="80"
+              :placeholder="WEATHER_PLACEHOLDER_SRC"
+              :src="`${runtimeConfig.public.imageBase}/${item.icon}@2x.png`"
+            />
+          </div>
+          <div class="flex flex-col justify-center items-start">
+            <span class="font-light text-gray-300 text-base">
+              {{ $t('weather.weatherViewer.min') }}
+            </span>
+            <span class="text-white font-bold text-xl">
+              {{ item.min }}
+            </span>
+          </div>
+          <div class="flex flex-col justify-center items-start">
+            <span class="font-light text-gray-300 text-base">
+              {{ $t('weather.weatherViewer.max') }}
+            </span>
+            <span class="text-white font-bold text-xl">
+              {{ item.max }}
+            </span>
+          </div>
+          <div class="flex flex-col justify-center items-start">
+            <span class="font-light text-gray-300 text-base">
+              {{ $t('weather.weatherViewer.windSpeed') }}
+            </span>
+            <span class="text-white font-bold text-xl">
+              {{ item.windSpeed }}
+            </span>
+          </div>
+        </div>
+      </div>
       <form @submit.prevent="handleSave" class="w-full flex justify-center mt-10">
         <div class="w-36">
           <Button
@@ -135,10 +184,6 @@
           />
         </div>
       </form>
-      <pre class="bg-black text-white w-full">
-      {{ weatherStore.weather.hourly }}
-    </pre
-      >
     </div>
     <div v-else>
       <h4 class="text-3xl text-center text-yellow-600 mt-14">

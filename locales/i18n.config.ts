@@ -20,14 +20,18 @@ export default defineI18nConfig(() => ({
       weather: {
         weatherViewer: {
           clouds: 'Clouds',
+          date: 'Date',
           feelsLike: 'Feels like',
           humidity: 'Humidity',
+          max: 'Max',
+          min: 'Min',
+          nextDays: 'Next Days',
           nextHours: 'Next Hours',
           pressure: 'Pressure',
           save: 'Save Location',
           uvi: 'Uvi',
           visibility: 'Visibility',
-          windSpeed: 'Wind speed',
+          windSpeed: 'Wind speed'
         }
       }
     },
@@ -48,7 +52,19 @@ export default defineI18nConfig(() => ({
       nothingToShow: 'Nada a mostrar',
       weather: {
         weatherViewer: {
-          save: 'Salvar Local'
+          clouds: 'Nuvens',
+          date: 'Data',
+          feelsLike: 'Sensação',
+          humidity: 'Humidade',
+          max: 'Máx',
+          min: 'Min',
+          nextDays: 'Próximos Dias',
+          nextHours: 'Próximas Horas',
+          pressure: 'Pressão',
+          save: 'Salvar Local',
+          uvi: 'Uvi',
+          visibility: 'Visibilidade',
+          windSpeed: 'Velocidade do vento'
         }
       }
     }

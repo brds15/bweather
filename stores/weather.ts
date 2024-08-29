@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import useLocationStore from '~/stores/location'
 import { navigateToWeather } from '~/utils/navigate'
-import type { Coordinates, TransformedWeatherData, WeatherData } from '~/types/weather'
+import type { Coordinates, TransformedWeatherData } from '~/types/weather'
 import type { LocationItem } from '~/types/location'
 
 const WEATHER_API_URL = '/api/weather/general/'
@@ -17,6 +17,9 @@ const useWeatherStore = defineStore({
     storage: persistedState.localStorage
   },
   getters: {
+    dailyWeather: state => {
+      return state.weather.daily
+    },
     hourlyWeather: state => {
       return state.weather.hourly
     },

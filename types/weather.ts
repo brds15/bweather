@@ -60,7 +60,7 @@ interface FeelsLike {
   night: number
 }
 
-interface DailyWeather {
+export interface DailyWeather {
   clouds: number
   dewPoint: number
   dt: number
@@ -93,14 +93,22 @@ export interface WeatherData {
 }
 
 export interface TranformedHourlyWeather {
-  dt: string,
-  icon: string,
+  dt: string
+  icon: string
   temp: string
+}
+
+export interface TransformedDailyWeather {
+  dt: string
+  icon: string
+  max: string
+  min: string
+  windSpeed: string
 }
 
 export interface TransformedWeatherData {
   current: TransformedCurrentWeather
-  daily: DailyWeather[]
+  daily: TransformedDailyWeather[]
   hourly: TranformedHourlyWeather[]
   lat: number
   lon: number
