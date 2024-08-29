@@ -10,3 +10,5 @@ export const ROUTES = {
   HOME: '/',
   WEATHER: '/weather'
 }
+
+export const HISTORICAL_LIMIT = 5

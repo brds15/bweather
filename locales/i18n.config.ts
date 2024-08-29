@@ -4,7 +4,7 @@ export default defineI18nConfig(() => ({
   messages: {
     en: {
       cityList: {
-        clearHistorical: 'Clear historical',
+        clearHistorical: 'Clean up old items',
         historical: 'Historical',
         historicalNotFound: 'Is not there historical',
         saved: 'Saved',
@@ -37,7 +37,7 @@ export default defineI18nConfig(() => ({
     },
     pt: {
       cityList: {
-        clearHistorical: 'Limpar histórico',
+        clearHistorical: 'Limpar antigos',
         historical: 'Histórico',
         historicalNotFound: 'Sem histórico',
         saved: 'Favoritos',

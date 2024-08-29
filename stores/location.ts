@@ -3,6 +3,7 @@ import useWeatherStore from '~/stores/weather'
 import { navigateToWeather } from '~/utils/navigate'
 import type { LocationItem, LocationsItems } from '~/types/location'
 import type { Coordinates } from '~/types/weather'
+import { HISTORICAL_LIMIT } from '~/constants'
 
 const useLocationStore = defineStore('location', {
   state: () => ({
@@ -31,6 +32,10 @@ const useLocationStore = defineStore('location', {
       this.locationToSearch = newValue
     },
     setLocationHistorical(locationItem: LocationItem) {
+      if (this.locationsHistorical.length === HISTORICAL_LIMIT) {
+        this.locationsHistorical.shift()
+      }
+
       this.locationsHistorical.push(locationItem)
     },
     setLocationSaved(locationItem: LocationItem) {
@@ -41,7 +46,7 @@ const useLocationStore = defineStore('location', {
       this.setLocations([])
     },
     resetLocationHistorical() {
-      this.locationsHistorical = []
+      this.locationsHistorical = [this.locationsHistorical[this.locationsHistorical.length - 1]]
     },
     async handleLocationSearch(locationItem: LocationItem) {
       if (!locationItem) {
