@@ -9,7 +9,7 @@ import {
   Weather,
   WeatherData
 } from '~/types/weather'
-import { timestampToDate, timestampToHour } from '~/server/utils/dataTime'
+import { timestampToDate, timestampToHour } from '~/server/utils/dateTime'
 
 function transformWeather(weather: Weather) {
   return {
