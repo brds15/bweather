@@ -17,6 +17,9 @@ const useWeatherStore = defineStore({
     storage: persistedState.localStorage
   },
   getters: {
+    hourlyWeather: state => {
+      return state.weather.hourly
+    },
     weatherCurrent: state => {
       return state.weather.current
     },

@@ -4,6 +4,7 @@
   import Button from '~/components/atoms/Button.vue'
   import InfoLabel from '~/components/molecules/InfoLabel.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
+  import { DateTime } from 'luxon'
 
   const runtimeConfig = useRuntimeConfig()
   const { t } = useI18n()
@@ -45,6 +46,12 @@
     ]
   })
 
+  function timestampToDate(timestamp: number) {
+    const dateTime = DateTime.fromSeconds(timestamp)
+
+    return dateTime.toLocaleString(DateTime.DATETIME_FULL)
+  }
+
   function handleSave() {
     locationStore.handleSaveLocation({
       latitude: weatherStore.weather.lat,
@@ -59,7 +66,7 @@
       <div
         class="w-full flex flex-col-reverse items-center gap-5 mt-14 md:flex-row md:justify-around md:items-start"
       >
-        <div class="flex-1">
+        <div class="flex flex-1 flex-col">
           <div class="flex items-center justify-center flex-wrap gap-8 md:justify-start">
             <InfoLabel
               v-for="(item, index) in currentInfo"
@@ -67,6 +74,14 @@
               :text="item.text"
               :title="item.title"
             />
+          </div>
+          <div class="w-full flex flex-col gap-8 mt-8">
+            <h4 class="text-3xl font-bold text-yellow-600">Today</h4>
+            <div class="">
+              <span>
+                {{ timestampToDate(weatherStore.hourlyWeather[0].dt) }}
+              </span>
+            </div>
           </div>
         </div>
         <div
@@ -110,12 +125,12 @@
         </div>
       </form>
       <pre class="bg-black text-white w-full">
-      {{ weatherStore.weather }}
+      {{ weatherStore.weather.hourly }}
     </pre
       >
     </div>
     <div v-else>
-      <h4 class="text-3xl text-white mt-14">
+      <h4 class="text-3xl text-center text-yellow-600 mt-14">
         {{ $t('nothingToShow') }}
       </h4>
     </div>
