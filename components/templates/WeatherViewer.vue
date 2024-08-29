@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import useWeatherStore from '~/stores/weather'
   import useLocationStore from '~/stores/location'
+  import { toast } from 'vue3-toastify'
+  import { Skeleton } from 'vue-loading-skeleton'
   import Button from '~/components/atoms/Button.vue'
   import InfoLabel from '~/components/molecules/InfoLabel.vue'
   import Title from '~/components/atoms/Title.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
-  import { toast } from 'vue3-toastify'
 
   const runtimeConfig = useRuntimeConfig()
   const { t } = useI18n()
@@ -196,10 +197,14 @@
         </div>
       </form>
     </div>
+    <div v-else-if="weatherStore.isLoading">
+      <Skeleton height="500px" />
+    </div>
     <div v-else>
       <h4 class="text-3xl text-center text-yellow-600 mt-14">
         {{ $t('nothingToShow') }}
       </h4>
     </div>
+
   </div>
 </template>

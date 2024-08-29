@@ -11,6 +11,7 @@ const useWeatherStore = defineStore({
   state: () => ({
     canSearchingByGeo: false as boolean,
     coordinates: { latitude: undefined, longitude: undefined } as Coordinates,
+    isLoading: false as boolean,
     weather: {} as TransformedWeatherData
   }),
   persist: {
@@ -31,6 +32,9 @@ const useWeatherStore = defineStore({
     }
   },
   actions: {
+    setIsLoading(newStatus: boolean) {
+      this.isLoading = newStatus
+    },
     setWeather(newWeather: TransformedWeatherData) {
       this.weather = newWeather
     },
@@ -41,9 +45,12 @@ const useWeatherStore = defineStore({
       this.coordinates = coordinates
     },
     async loadWeatherData() {
+      this.setIsLoading(true)
+
       await $fetch(`${WEATHER_API_URL}${this.coordinates.latitude}/${this.coordinates.longitude}`)
         .then(response => this.setWeather(response))
         .catch(e => console.error('error::', e))
+        .finally(() => this.setIsLoading(false))
     },
     async handleWeatherDataWithHistorical(locationItem: LocationItem) {
       const locationStore = useLocationStore()
