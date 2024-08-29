@@ -7,6 +7,7 @@ import { HISTORICAL_LIMIT, SAVE_LIST_LIMIT } from '~/constants'
 
 const useLocationStore = defineStore('location', {
   state: () => ({
+    isLoading: false as boolean,
     locations: [] as LocationsItems,
     locationToSearch: '' as string,
     locationsHistorical: [] as LocationsItems,
@@ -32,6 +33,9 @@ const useLocationStore = defineStore('location', {
     }
   },
   actions: {
+    setIsLoading(newStatus: boolean) {
+      this.isLoading = newStatus
+    },
     setLocations(newValue: LocationsItems) {
       this.locations = newValue
     },
@@ -110,9 +114,12 @@ const useLocationStore = defineStore('location', {
     },
     async loadLocations() {
       if (this.locationToSearch) {
+        this.setIsLoading(true)
+
         $fetch(`/api/weather/location/${this.locationToSearch}`)
           .then(response => this.setLocations(response))
           .catch(e => console.error('error::', e))
+          .finally(() => this.setIsLoading(false))
       }
     },
     async loadLocationsByCoordinates(coordinates: Coordinates) {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import useWeatherStore from '~/stores/weather'
   import useLocationStore from '~/stores/location'
+  import { Skeleton } from 'vue-loading-skeleton'
   import Button from '~/components/atoms/Button.vue'
   import Input from '~/components/atoms/Input.vue'
 
@@ -11,6 +12,7 @@
 <template>
   <div>
     <form
+      v-if="!locationStore.isLoading"
       class="flex flex-row flex-wrap items-center gap-2 bg-white rounded-lg mt-14 sm:flex-nowrap"
       data-testid="search-form"
       @submit.prevent="locationStore.loadLocations()"
@@ -36,7 +38,13 @@
       />
       <Button data-testid="search-form-button" type="submit" :text="$t('searchForm.button')" />
     </form>
-    <ul v-if="locationStore.locations.length > 0" class="mt-4 bg-white p-4 rounded-lg">
+    <div class="mt-14" v-else>
+      <Skeleton height="210px" width="300px" />
+    </div>
+    <ul
+      v-if="locationStore.locations.length > 0 && !locationStore.isLoading"
+      class="mt-4 bg-white p-4 rounded-lg"
+    >
       <li v-for="(item, index) in locationStore.locations" :key="index">
         <div
           class="flex flex-row items-center cursor-pointer my-2 gap-2 overflow-auto rounded-lg p-2 hover:bg-sky-100"
