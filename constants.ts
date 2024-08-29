@@ -12,3 +12,5 @@ export const ROUTES = {
 }
 
 export const HISTORICAL_LIMIT = 5
+
+export const SAVE_LIST_LIMIT = 10

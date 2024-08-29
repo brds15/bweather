@@ -3,7 +3,7 @@ import useWeatherStore from '~/stores/weather'
 import { navigateToWeather } from '~/utils/navigate'
 import type { LocationItem, LocationsItems } from '~/types/location'
 import type { Coordinates } from '~/types/weather'
-import { HISTORICAL_LIMIT } from '~/constants'
+import { HISTORICAL_LIMIT, SAVE_LIST_LIMIT } from '~/constants'
 
 const useLocationStore = defineStore('location', {
   state: () => ({
@@ -16,6 +16,13 @@ const useLocationStore = defineStore('location', {
     storage: persistedState.localStorage
   },
   getters: {
+    lastLocation: state => {
+      if (state.locationsHistorical.length > 0) {
+        return state.locationsHistorical[state.locationsHistorical.length - 1]
+      }
+
+      return undefined
+    },
     lastLocationName: state => {
       if (state.locationsHistorical.length > 0) {
         return state.locationsHistorical[state.locationsHistorical.length - 1].name
@@ -39,6 +46,10 @@ const useLocationStore = defineStore('location', {
       this.locationsHistorical.push(locationItem)
     },
     setLocationSaved(locationItem: LocationItem) {
+      if (this.locationsSaved.length === SAVE_LIST_LIMIT) {
+        this.locationsSaved.shift()
+      }
+
       this.locationsSaved.push(locationItem)
     },
     handleResetLocation() {
@@ -61,6 +72,22 @@ const useLocationStore = defineStore('location', {
     },
     saveLocationHistorical(locationItem: LocationItem) {
       this.setLocationHistorical(locationItem)
+    },
+    alreadySavedLocation() {
+      const lastLocation = this.lastLocation
+
+      if (lastLocation) {
+        const { coordinates } = lastLocation
+        const item = this.locationsSaved.find(
+          (item: LocationItem) =>
+            item.coordinates.latitude === coordinates.latitude &&
+            item.coordinates.longitude === coordinates.longitude
+        )
+
+        return !!item
+      }
+
+      return false
     },
     removeSaveLocation(locationItem: LocationItem) {
       const { coordinates } = locationItem

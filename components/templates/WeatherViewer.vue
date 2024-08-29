@@ -175,7 +175,11 @@
           </div>
         </div>
       </div>
-      <form @submit.prevent="handleSave" class="w-full flex justify-center mt-10">
+      <form
+        v-if="!locationStore.alreadySavedLocation()"
+        @submit.prevent="handleSave"
+        class="w-full flex justify-center mt-10"
+      >
         <div class="w-36">
           <Button
             v-if="weatherStore.weather.lat"
