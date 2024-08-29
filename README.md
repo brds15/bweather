@@ -63,6 +63,8 @@ The following pages were created
 - index - page dedicated to the application's home page, where the location search form is located
 - weather - page dedicated to displaying weather information
 
+When I was configuring the tests, I wanted to configure e2e tests. However, vite does not support for cypress. In another hand, I discovered reading the docs, that vitest support e2e tests, and how to configure it.
+
 To create the components, I thought it was important to use atomic design, so
 
 - Atoms -> created for DOM-level components for shared use and free of business rules
@@ -82,7 +84,6 @@ With this, data transformers were created, so that only the necessary fields are
 To use the cache, I initially thought of using the unstore, but I realised that it wouldn't have any advantages on the frontend side. So I opted to use ‘pinia-plugin-persistedstate’ because of its ease, integration with the store and also with Nuxt3.
 
 ![system-design](screenshots/system-design.png)
-
 
 ## Production
 
