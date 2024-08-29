@@ -5,11 +5,27 @@
 
   const weatherStore = useWeatherStore()
   const locationStore = useLocationStore()
+  const props = defineProps({
+    showSavedItems: {
+      default: false,
+      required: true,
+      type: Boolean
+    },
+    showHistoricalItems: {
+      default: false,
+      required: true,
+      type: Boolean
+    }
+  })
 </script>
 
 <template>
   <div class="flex gap-5 items-center">
-    <Dropdown :text="$t('cityList.saved')">
+    <Dropdown
+      @handleDropdownButtonClick="$emit('handleDropdownButtonClick', 'saved')"
+      :show-items="props.showSavedItems"
+      :text="$t('cityList.saved')"
+    >
       <span v-if="locationStore.locationsSaved.length === 0">
         {{ $t('cityList.savedNotFound') }}
       </span>
@@ -31,7 +47,11 @@
         </div>
       </div>
     </Dropdown>
-    <Dropdown :text="$t('cityList.historical')">
+    <Dropdown
+      @handleDropdownButtonClick="$emit('handleDropdownButtonClick', 'historical')"
+      :show-items="props.showHistoricalItems"
+      :text="$t('cityList.historical')"
+    >
       <span v-if="locationStore.locationsHistorical.length === 0">
         {{ $t('cityList.historicalNotFound') }}
       </span>
