@@ -27,7 +27,10 @@
       >
         {{ $t('titleOne') }}
       </h1>
-      <h2 class="text-6xl font-semibold text-sky-900 z-0  md:text-8xl md:leading-9">
+      <h2
+        class="text-6xl font-semibold text-sky-900 z-0 md:text-8xl md:leading-9"
+        data-testid="title2"
+      >
         {{ $t('titleTwo') }}
         <Icon class="relative top-2" name="fxemoji:whitesunsmallcloud" size="1em" />
       </h2>

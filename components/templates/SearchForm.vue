@@ -12,6 +12,7 @@
   <div>
     <form
       class="flex flex-row flex-wrap items-center gap-2 bg-white rounded-lg mt-14 sm:flex-nowrap"
+      data-testid="search-form"
       @submit.prevent="locationStore.loadLocations()"
     >
       <div
@@ -19,15 +20,21 @@
         class="cursor-pointer flex items-center pl-2"
         @click="weatherStore.handleCurrentPosition"
       >
-        <Icon name="ic:sharp-gps-fixed" size="1.3em" class="text-sky-900" />
+        <Icon
+          class="text-sky-900"
+          data-testid="search-form-icon"
+          name="ic:sharp-gps-fixed"
+          size="1.3em"
+        />
       </div>
       <Input
         :placeholder="$t('searchForm.placeholder')"
         class="flex-1"
+        data-testid="search-form-input"
         type="text"
         @change="e => locationStore.setLocationToSearch(e.target.value)"
       />
-      <Button type="submit" :text="$t('searchForm.button')" />
+      <Button data-testid="search-form-button" type="submit" :text="$t('searchForm.button')" />
     </form>
     <ul v-if="locationStore.locations.length > 0" class="mt-4 bg-white p-4 rounded-lg">
       <li v-for="(item, index) in locationStore.locations" :key="index">

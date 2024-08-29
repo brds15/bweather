@@ -8,8 +8,8 @@
   import Title from '~/components/atoms/Title.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
 
-  const runtimeConfig = useRuntimeConfig()
   const { t } = useI18n()
+  const runtimeConfig = useRuntimeConfig()
   const weatherStore = useWeatherStore()
   const locationStore = useLocationStore()
 
@@ -63,7 +63,7 @@
 </script>
 
 <template>
-  <div class="w-full h-auto p-6">
+  <div class="w-full h-auto p-6" data-testid="weather-viewer-container">
     <div v-if="weatherStore.weather.lat" class="w-full flex flex-col items-center justify-between">
       <div
         class="w-full flex flex-col-reverse items-center gap-5 mt-14 md:flex-row md:justify-around md:items-start"
