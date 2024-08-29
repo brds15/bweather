@@ -50,7 +50,7 @@
       </span>
     </div>
     <span
-      v-if="locationStore.locationsHistorical.length > 0"
+      v-if="locationStore.locationsHistorical.length > 1"
       @click="locationStore.resetLocationHistorical"
       class="cursor-pointer mt-3 text-yellow-600"
     >
