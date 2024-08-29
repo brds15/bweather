@@ -10,13 +10,15 @@ export default defineI18nConfig(() => ({
         saved: 'Saved',
         savedNotFound: 'There is not saved'
       },
+      genericErrorMessage: "Something doesn't work.",
+      genericSuccessMessage: "Done with success!",
+      nothingToShow: 'Nothing to show',
       searchForm: {
         button: 'For City',
         placeholder: 'Search'
       },
       titleOne: 'Weather &',
       titleTwo: 'Forecast',
-      nothingToShow: 'Nothing to show',
       weather: {
         weatherViewer: {
           clouds: 'Clouds',
@@ -43,13 +45,15 @@ export default defineI18nConfig(() => ({
         saved: 'Favoritos',
         savedNotFound: 'Sem favoritos'
       },
+      genericErrorMessage: "Algo não funcionou.",
+      genericSuccessMessage: "Feito com sucesso!",
+      nothingToShow: 'Nada a mostrar',
       searchForm: {
         button: 'Por Cidade',
         placeholder: 'Pesquise'
       },
       titleOne: 'Clima &',
       titleTwo: 'Previsão',
-      nothingToShow: 'Nada a mostrar',
       weather: {
         weatherViewer: {
           clouds: 'Nuvens',

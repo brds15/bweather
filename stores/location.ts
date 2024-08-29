@@ -101,12 +101,19 @@ const useLocationStore = defineStore('location', {
     async handleSaveLocation(coordinates: Coordinates) {
       const locationItem = await this.loadLocationsByCoordinates(coordinates)
 
-      if (locationItem) this.setLocationSaved(locationItem)
+      if (locationItem) {
+        this.setLocationSaved(locationItem)
+        return
+      }
+
+      throw 'error'
     },
     async loadLocations() {
-      $fetch(`/api/weather/location/${this.locationToSearch}`)
-        .then(response => this.setLocations(response))
-        .catch(e => console.error('error::', e))
+      if (this.locationToSearch) {
+        $fetch(`/api/weather/location/${this.locationToSearch}`)
+          .then(response => this.setLocations(response))
+          .catch(e => console.error('error::', e))
+      }
     },
     async loadLocationsByCoordinates(coordinates: Coordinates) {
       try {

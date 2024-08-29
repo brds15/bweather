@@ -5,6 +5,7 @@
   import InfoLabel from '~/components/molecules/InfoLabel.vue'
   import Title from '~/components/atoms/Title.vue'
   import { WEATHER_PLACEHOLDER_SRC } from '~/constants'
+  import { toast } from 'vue3-toastify'
 
   const runtimeConfig = useRuntimeConfig()
   const { t } = useI18n()
@@ -46,11 +47,17 @@
     ]
   })
 
-  function handleSave() {
-    locationStore.handleSaveLocation({
-      latitude: weatherStore.weather.lat,
-      longitude: weatherStore.weather.lon
-    })
+  async function handleSave() {
+    try {
+      await locationStore.handleSaveLocation({
+        latitude: weatherStore.weather.lat,
+        longitude: weatherStore.weather.lon
+      })
+
+      toast.info(t('genericSuccessMessage'))
+    } catch {
+      toast.error(t('genericErrorMessage'))
+    }
   }
 </script>
 
