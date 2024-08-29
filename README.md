@@ -2,11 +2,15 @@
 
 Application for checking weather.
 
+![home](screenshots/print.png)
+![home](screenshots/print-mobile.png)
+
 # Goals
 
 - Search weather by city, by current localization or typed
 - Show weather information
 - Show the historical of searching
+- Save favorites
 - Show the favorites
 
 # Characters
@@ -20,10 +24,12 @@ Application for checking weather.
 - i18n
 - Tailwind
 - Data source from Openweather
+- Github actions
 
 # Getting started
 
 Prerequisites
+
 - node >= 20
 - [nvm](https://github.com/nvm-sh/nvm)
 - npm
@@ -40,10 +46,46 @@ npm install # to install dependencies
 npm run dev # open localhost:3000
 ```
 
-# Diary of developing
+# Developing Notes
 
+After analysing the openweather API, I identified two endpoints for
+
+- bringing in time data via coordinates
+- discover the coordinates via the location
+
+Analysing all the requirements of the project, I realised that creating two contexts would be enough for the entire implementation of the rules.
+
+- Weather
+- Location
+
+The following pages were created
+
+- index - page dedicated to the application's home page, where the location search form is located
+- weather - page dedicated to displaying weather information
+
+To create the components, I thought it was important to use atomic design, so
+
+- Atoms -> created for DOM-level components for shared use and free of business rules
+- Molecules -> composed of atom components, free of business rules
+- Organisms -> did not need to be created at this point in the project's maturity
+- Templates -> are components that implement the business logic
+- Pages -> made up of templetes. It follows the Nuxt page convention, so it is outside the ‘components’ folder.
+
+Two stores were created for state management
+
+- weather
+- location
+
+To integrate with the API, I used the ‘Backend For Frontend’ pattern, thus taking advantage of some of Nuxt's advantages, such as the use of Nitro.
+With this, data transformers were created, so that only the necessary fields are formatted and sent to the frontend layer.
+
+To use the cache, I initially thought of using the unstore, but I realised that it wouldn't have any advantages on the frontend side. So I opted to use ‘pinia-plugin-persistedstate’ because of its ease, integration with the store and also with Nuxt3.
+
+Translated with DeepL.com (free version)
+
+![system-design](screenshots/system-design.png)
 
 ## Production
+
 - Deployed by Vercel
 - Access: https://bweather.vercel.app/
-
