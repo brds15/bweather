@@ -5,7 +5,7 @@
 
   const weatherStore = useWeatherStore()
 
-  onMounted(() => {
+  const handleGetCurrentCoordinates = async () => {
     getCurrentCoordinates()
       .then(coordinates => {
         weatherStore.setCanSearchingByGeo(true)
@@ -15,6 +15,10 @@
         weatherStore.setCanSearchingByGeo(false)
         console.error(error.message)
       })
+  }
+
+  onMounted(() => {
+    handleGetCurrentCoordinates()
   })
 </script>
 
