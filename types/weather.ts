@@ -3,14 +3,14 @@ export interface Coordinates {
   longitude?: number
 }
 
-interface Weather {
+export interface Weather {
   description: string
   icon: string
   id: number
   main: string
 }
 
-interface CurrentWeather {
+export interface CurrentWeather {
   clouds: number
   dewPoint: number
   dt: number
@@ -25,6 +25,18 @@ interface CurrentWeather {
   weather: Weather[]
   windDeg: number
   windSpeed: number
+}
+
+export interface TransformedCurrentWeather {
+  clouds: string
+  feelsLike: string
+  humidity: string
+  pressure: string
+  temp: string
+  uvi: number
+  visibility: number
+  weather: Weather[]
+  windSpeed: string
 }
 
 interface HourlyWeather extends CurrentWeather {
@@ -72,6 +84,16 @@ interface DailyWeather {
 
 export interface WeatherData {
   current: CurrentWeather
+  daily: DailyWeather[]
+  hourly: HourlyWeather[]
+  lat: number
+  lon: number
+  timezone: string
+  timezoneOffset: number
+}
+
+export interface TransformedWeatherData {
+  current: TransformedCurrentWeather
   daily: DailyWeather[]
   hourly: HourlyWeather[]
   lat: number
