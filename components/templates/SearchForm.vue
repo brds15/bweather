@@ -17,7 +17,7 @@
       @submit.prevent="locationStore.loadLocations()"
     >
       <div
-        v-if="weatherStore.canSearchingByGeo && !weatherStore.weather.lat"
+        v-if="weatherStore.canSearchingByGeo"
         class="cursor-pointer flex items-center pl-2"
         @click="weatherStore.handleCurrentPosition"
       >
