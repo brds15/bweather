@@ -81,7 +81,7 @@ Two stores were created for state management
 To integrate with the API, I used the ‘Backend For Frontend’ pattern, thus taking advantage of some of Nuxt's advantages, such as the use of Nitro.
 With this, data transformers were created, so that only the necessary fields are formatted and sent to the frontend layer.
 
-To use the cache, I initially thought of using the unstore, but I realised that it wouldn't have any advantages on the frontend side. So I opted to use ‘pinia-plugin-persistedstate’ because of its ease, integration with the store and also with Nuxt3.
+To use the web storage, I initially thought of using the unstore, but I realised that it wouldn't have any advantages on the frontend side. So I opted to use ‘pinia-plugin-persistedstate’ because of its ease, integration with the store and also with Nuxt3.
 
 ![system-design](screenshots/system-design.png)
 
